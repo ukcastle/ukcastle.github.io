@@ -40,9 +40,10 @@ nav:
   Home:           
     - '/'
   Blog:           
-    - '/blog/'
-    - { Categories: '/blog/categories/' }
-    - { Tags: '/blog/tags/' }
+    - '/blog/categories/'
+    - { TIL (Today I Learned): '/blog/categories/#TiL' }
+    - { 잡다한 이야기: '/blog/categories/#etc' }
+    # - { Tags: '/blog/tags/' }
   About:          
     - '/about/'
   Github Project: 
