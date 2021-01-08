@@ -1,1 +1,1 @@
-[GitHub Blog](jo631.github.io)
+[GitHub Blog](https://jo631.github.io/)
