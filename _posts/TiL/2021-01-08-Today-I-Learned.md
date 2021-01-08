@@ -2,7 +2,7 @@
 layout: post
 title: 21.01.08 기록
 category: TiL
-tag: [github, blog, jekyll]
+tag: [github, blog,WSL, jekyll]
 ---
 
 # GitHub blog with Jekyll in Window 10
@@ -25,4 +25,21 @@ tag: [github, blog, jekyll]
 
 개발을 시작해보려고 한 뒤 처음으로 봉착한 난관은 지킬은 **Ruby**라는 언어를 사용한 프레임워크이고 루비는 (물론 윈도우에서도 잘 되지만)리눅스 환경에서 더 편한 언어이다. 따라서 불편하게 윈도우용으로 설치하는가 리눅스를 설치하여 쓰는가 두가지 선택지가 있었는데, Windows Subsystem for Linux(일명 **WSL**)를 사용하여 개발하기로 결정했다.
 
+#### Install WSL
+
+WSL을 사용하기위해 설정해야 할 점이 몇가지 있다.
+> 1. Windows 기능 켜기
+> 2. Microsoft Store에서 우분투 다운로드
+> 3. 계정 생성 후 권한 주기
+> 4. 기초 설정
+
+
+1. 첫번째로 Windows 기능 켜기/끄기 탭에서 **Linux용 Windows 하위 시스템** 을 체크 해줘야 한다.
+![기능 켜기](.docsImage/210108_1.jpg)  
+그 다음 재부팅을 하라고 알림이 뜨면 하고 오면 된다.
+
+2. 두번째로 
+
+
+[WSL Bash Shell](https://forbes.tistory.com/543)
 
