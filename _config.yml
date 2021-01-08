@@ -24,9 +24,9 @@ version: 1.0.0
 
 # About/contact
 author:
-  name: Codinfox
-  description: A passionate <strong>developer and researcher</strong>, learning to be a giant.
-  gravatar: 3c2986ad7ac1f2230ea3596f44563328 # md5 hash of your email address
+  name: CastleJo
+  description: 설명
+  gravatar: 2cab55d41d9385e34db30faa9d180db1 # md5 hash of your email address
   contact:
     linkedin:  https://www.linkedin.com/in/lizhihao ##xx
     github:    https://github.com/jo631
@@ -46,7 +46,7 @@ nav:
   About:          
     - '/about/'
   Github Project: 
-    - 'http://codinfox.github.io/'
+    - 'http://jo631.github.io/'
 
 # Where are tags and categories displayed
 tag_page: '/blog/tags/'
@@ -54,7 +54,7 @@ category_page: '/blog/categories/'
 
 main_jpg:
   image: /public/img/moon.jpg
-  caption: Original Artwork &copy; <a href="http://yalestewart.deviantart.com/art/We-Will-Be-Giants-370176475">Yale Stewart</a>
+  caption: 설명
 
 # Puglins
 mathjax: true # whether support mathjax
