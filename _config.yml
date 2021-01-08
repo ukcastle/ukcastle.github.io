@@ -1,10 +1,10 @@
 # Site Info
-title: 개발일지
-tagline: 'CastleJo's Blog'
-description: 'CastleJo의 개발일지'
+title: 제목
+tagline: '태그라인 넣을거'
+description: '설명'
 baseurl: ""
 url: http://jo631.github.io
-logo: '/public/logo.png'
+logo: '/public/logo.png' #로고 바꾸기
 
 # Site configurations
 gems:
@@ -25,7 +25,7 @@ version: 1.0.0
 # About/contact
 author:
   name: CastleJo
-  description: Korean Polytechnic University 출신 사진찍기 좋아하는(leica x typ 113 오너) 개발자 
+  description: 설명
   gravatar: 2cab55d41d9385e34db30faa9d180db1 # md5 hash of your email address
   contact:
     linkedin:  https://www.linkedin.com/in/lizhihao ##xx
@@ -55,7 +55,7 @@ category_page: '/blog/categories/'
 
 main_jpg:
   image: /public/img/moon.jpg
-  caption: 'photo by me'
+  caption: 설명
 
 # Puglins
 mathjax: true # whether support mathjax
