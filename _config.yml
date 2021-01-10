@@ -28,26 +28,24 @@ author:
   description: Korean Polytechnic University<br/>사진찍는 취미가 있는<br/>(Leica x typ 113 오너) <br/>개발자 
   gravatar: 2cab55d41d9385e34db30faa9d180db1 # md5 hash of your email address
   contact:
-    linkedin:  https://www.linkedin.com/in/lizhihao ##xx
     github:    https://github.com/jo631
-    # facebook:  <hide>
-    twitter:   https://twitter.com/Li_Zhihao ##xx
-    weibo:     http://weibo.com/41173780 ##xx
-    email:     http://www.google.com/recaptcha/mailhide/d?k=01I3lZFiZYng9N3QxYEtsDaQ==&c=31wAnZkuKqcG0ATAqJN8Z3ln5kkYLA9TwkGc-IbygpM= ##x
+    instagram: https://www.instagram.com/castle_uk_jo/
+    email:     'mailto: josw631@gmail.com'
 
 # Navigation (2nd level links supported)
 nav:
   Home:           
     - '/'
-  Blog:           
+  Categories:           
     - '/blog/categories/'
     - { TIL (Today I Learned): '/blog/categories/#TiL' }
     - { 잡다한 이야기: '/blog/categories/#etc' }
-    # - { Tags: '/blog/tags/' }
-  About:          
-    - '/about/'
+  Tag: 
+    - '/blog/tags/' 
+  #About:          
+  #  - '/about/'
   Github Project: 
-    - 'http://jo631.github.io/'
+    - 'http://github.com/jo631/jo631.github.io'
 
 # Where are tags and categories displayed
 tag_page: '/blog/tags/'
@@ -60,5 +58,5 @@ main_jpg:
 # Puglins
 mathjax: true # whether support mathjax
 google_analytics_token: 'UA-00000000-1' # leave blank if you don't want google analytics
-disqus_short_name: 'your_short_name' # leave blank if you don't want disqus
+disqus_short_name: '' # leave blank if you don't want disqus
 

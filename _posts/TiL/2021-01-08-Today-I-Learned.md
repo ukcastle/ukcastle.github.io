@@ -2,7 +2,7 @@
 layout: post
 title: 21.01.08 기록
 category: TiL
-tag: [WSL, jekyll]
+tag: [WSL, Jekyll]
 ---
 
 # Intall Jekyll in Window 10
