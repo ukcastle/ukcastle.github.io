@@ -2,6 +2,7 @@
 layout: default
 ---
 
+<!-- Post Begin -->
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   <span class="post-date">{{ page.date | date_to_string }}</span>
@@ -17,8 +18,51 @@ layout: default
     </div>
     {{ content }}
   </article>
+  
+  <hr class="endLine">
+
+</div>
+<!-- Post End -->
+
+<!-- LikeBtn.com Begin -->
+<div style="text-align: center;">
+  <span class="likebtn-wrapper"
+    data-theme="custom" 
+    data-btn_size="33" 
+    data-f_size="20" 
+    data-icon_size="20" 
+    data-icon_l="thmb1" 
+    data-icon_d="thmb7-u" 
+    data-icon_l_c_v="#1802f5" 
+    data-icon_d_c_v="#1802f5" 
+    data-label_c_v="#000000" 
+    data-brdr_c="#777777" 
+    data-ef_voting="push" 
+    data-white_label="true" 
+    data-show_like_label="false" 
+    data-show_dislike_label="true" 
+    data-like_enabled="false" 
+    data-popup_disabled="true" 
+    data-tooltip_enabled="false" 
+    data-i18n_dislike="Like">
+  </span>
 </div>
 
+<script>
+(function(d,e,s){
+  if(d.getElementById("likebtn_wjs"))
+    return;a=d.createElement(e);
+  m=d.getElementsByTagName(e)[0];
+  a.async=1;a.id="likebtn_wjs";
+  a.src=s;
+  m.parentNode.insertBefore(a, m)
+})
+(document,"script","//w.likebtn.com/js/w/widget.js");
+</script>
+<!-- LikeBtn.com End -->
+
+
+<!-- Related Post Begin -->
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
@@ -34,8 +78,11 @@ layout: default
     {% endfor %}
   </ul>
 </div>
+<!-- Related Post End -->
 
-<!-- utterances comment -->
+
+
+<!-- utterances comment Begin -->
 <script src="https://utteranc.es/client.js"
         repo="jo631/jo631.github.io"
         issue-term="pathname"
@@ -44,7 +91,9 @@ layout: default
         crossorigin="anonymous"
         async>
 </script>
+<!-- utterances comment End -->
 
+<!-- Scroll Spy Begin -->
 <script>
   function getTOCNodes(master) {
     var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
@@ -117,3 +166,4 @@ layout: default
 
   }, false);
 </script>
+<!-- Scroll Spy End -->
