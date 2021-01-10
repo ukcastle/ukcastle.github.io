@@ -1,0 +1,19 @@
+I"�<h1 id="homepage-layout-change">Homepage Layout Change</h1>
+<p>원래같았으면 라즈베리파이를 시작해보려고 했지만…<br />
+일단 홈페이지 레이아웃을 좀 수정했다.
+<a href="https://outstanding1301.github.io/">졸작 팀원의 블로그</a>에서 많이 참고하였다.<br />
+<br /></p>
+
+<h4 id="스크롤에-따른-목차-띄우기">스크롤에 따른 목차 띄우기</h4>
+<p>오른쪽에 신기한게 생겼다.<br />
+<img src="https://github.com/jo631/jo631.github.io/blob/dev/postimg/move.gif?raw=true" alt="move" />
+scroll spy라고 하던데 이름 적당한 것 같다.
+솔직히 근데 정말 따라하기만 했다.<br />
+<a href="https://outstanding1301.github.io/git/2021/01/08/table-of-contents-scroll-spy/">여기</a>를 보고 참고했다. JS를 사용했고 좀 비효율적이라고 들었다. <br />
+다음에 더 알아보자<br />
+<br /></p>
+
+<h4 id="댓글-기능-추가">댓글 기능 추가</h4>
+<p>댓글기능이 고장나있길래 다른 방법으로 만들었다.<br />
+<a href="https://utteranc.es/?installation_id=13996114&amp;setup_action=install">Utteranc</a>를 이용했다. 너무너무 편리해서 좋았다.</p>
+:ET

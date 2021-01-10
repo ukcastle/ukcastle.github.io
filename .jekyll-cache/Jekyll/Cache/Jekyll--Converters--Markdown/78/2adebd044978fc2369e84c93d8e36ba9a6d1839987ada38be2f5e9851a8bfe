@@ -1,0 +1,55 @@
+I"t<h1 id="homepage-layout-change">Homepage Layout Change</h1>
+<p>원래같았으면 라즈베리파이를 시작해보려고 했지만…<br />
+일단 홈페이지 레이아웃을 좀 수정했다.
+<a href="https://outstanding1301.github.io/">졸작 팀원의 블로그</a>에서 많이 참고하였다.<br />
+<br /></p>
+
+<h4 id="스크롤에-따른-목차-띄우기">스크롤에 따른 목차 띄우기</h4>
+<p>오른쪽에 신기한게 생겼다.</p>
+
+<hr />
+<p><img src="https://github.com/jo631/jo631.github.io/blob/dev/postimg/move.gif?raw=true" alt="move" /></p>
+
+<hr />
+<p>scroll spy라고 하던데 이름 적당한 것 같다.
+솔직히 근데 정말 따라하기만 했다.<br />
+<a href="https://outstanding1301.github.io/git/2021/01/08/table-of-contents-scroll-spy/">여기</a>를 보고 참고했다. JS를 사용했고 좀 비효율적이라고 들었다. <br />
+다음에 더 알아보자<br />
+<br /></p>
+
+<h4 id="댓글-기능-추가">댓글 기능 추가</h4>
+
+<p>댓글기능이 고장나있길래 다른 방법으로 만들었다.<br />
+<a href="https://utteranc.es/?installation_id=13996114&amp;setup_action=install">Utteranc</a>를 이용했다. 너무너무 편리해서 좋았다.<br />
+자신의 계정과 저장소 이름을 입력한 뒤 스크립트 코드를 복붙해서 사용하면 된다</p>
+
+<hr />
+<p><img src="https://github.com/jo631/jo631.github.io/blob/dev/postimg/comment.gif?raw=true" alt="comment" /></p>
+
+<hr />
+<p>내 템플릿같은 경우는 <code class="language-plaintext highlighter-rouge">layouts/post.html</code>에 넣으면 됐다.<br />
+행복하다 이런게 오픈소스지</p>
+
+<h4 id="좋아요-기능-추가">좋아요 기능 추가</h4>
+<hr />
+<p><img src="https://github.com/jo631/jo631.github.io/blob/dev/postimg/like.gif?raw=true" alt="like" /></p>
+
+<hr />
+<p>직접 구현해보려했는데, 한 가지 간과한점이 있다.<br />
+지킬은 <strong>정적</strong> 홈페이지 이다. 즉 <strong>동적</strong>인 행동을(좋아요를 누르면 추가되는 행동) DB와 연동하여 넣기가 힘들다더라. <a href="https://stackoverflow.com/questions/39344219/like-button-for-posts-in-jekyll">출처: StackOverflow</a><br />
+대신 <a href="https://likebtn.com/en/">LIKEBTN</a>이라는 사이트를 이용하면, 위의 댓글기능과 같은 맥락으로 설정이 가능했다.</p>
+
+<hr />
+<p><img src="https://github.com/jo631/jo631.github.io/blob/dev/postimg/LIKEBTN.jpg?raw=true" alt="likebtn" /></p>
+
+<hr />
+
+<p>이쁘게 커스터마이징을 하고 우측에 스크립트 코드 복사를 누르면 된다.<br />
+Like 버튼을 누르면 광고가 표시되길래… 꼼수를 좀 부렸다.</p>
+
+<p>오늘 공부한 것은 여기까지이다. 사실 내부적으로 더 바꾸긴 했다.</p>
+
+<h4 id="여담">여담</h4>
+<p>좋아요 만들어봤자 나말고 누를 사람이 있을까?<br />
+내일은 꼭… 라즈베리..시작..한다..</p>
+:ET
