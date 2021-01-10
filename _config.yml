@@ -36,15 +36,16 @@ author:
 nav:
   Home:           
     - '/'
-  Blog:           
+  Categories:           
     - '/blog/categories/'
     - { TIL (Today I Learned): '/blog/categories/#TiL' }
     - { 잡다한 이야기: '/blog/categories/#etc' }
-    - { Tags: '/blog/tags/' }
-  About:          
-    - '/about/'
+  Tag: 
+    - '/blog/tags/' 
+  #About:          
+  #  - '/about/'
   Github Project: 
-    - 'http://jo631.github.io/'
+    - 'http://github.com/jo631/jo631.github.io'
 
 # Where are tags and categories displayed
 tag_page: '/blog/tags/'
