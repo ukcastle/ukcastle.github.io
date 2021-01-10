@@ -1,0 +1,13 @@
+I"h<h1 id="homepage-layout-change">Homepage Layout Change</h1>
+<p>원래같았으면 라즈베리파이를 시작해보려고 했지만…<br />
+일단 홈페이지 레이아웃을 좀 수정했다.
+<a href="https://outstanding1301.github.io/">졸작 팀원의 블로그</a>에서 많이 참고하였다.<br />
+<br /></p>
+
+<h4 id="스크롤에-따른-목차-띄우기">스크롤에 따른 목차 띄우기</h4>
+<p>오른쪽에 신기한게 생겼다.<br />
+scroll spy라고 하던데 이름 적당한 것 같다.
+솔직히 근데 정말 따라하기만 해서 원리를 잘 모른다…<br />
+<a href="https://outstanding1301.github.io/git/2021/01/08/table-of-contents-scroll-spy/">여기</a>를 보고 참고했다. JS를 사용했고 좀 비효율적이라고 했는데 이쪽에 백그라운드가 없어서 자세히는 모르겠다.<br />
+다음에 더 알아보자</p>
+:ET
