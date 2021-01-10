@@ -20,7 +20,7 @@ paginate: 5
 paginate_path: '/blog/page:num'
 permalink: pretty
 
-version: 1.0.5
+#version: 1.0.5
 
 # About/contact
 author:
@@ -44,7 +44,7 @@ nav:
     - '/blog/tags/' 
   #About:          
   #  - '/about/'
-  Github Project: 
+  Github Repository: 
     - 'http://github.com/jo631/jo631.github.io'
 
 # Where are tags and categories displayed
