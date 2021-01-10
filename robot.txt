@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://jo631.github.io/sitemap.xml
