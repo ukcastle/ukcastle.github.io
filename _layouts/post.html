@@ -10,7 +10,11 @@ layout: default
     <a href="{{ site.baseurl }}{{ site.tag_page }}#{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
   {% endfor %}
   {% endif %}
-  <article>
+  <article class="post-article">
+    <div class="toc">
+      <a href="#">&lt;맨 위로&gt;</a>
+      {% include toc.html html=content %}
+    </div>
     {{ content }}
   </article>
 </div>
