@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 21.01.10 기록
+title: 지킬 포스트에 목차, 댓글, 좋아요 추가하기 
 category: TiL
 tag: [Jekyll]
 ---
 
-# Homepage Layout Change
+# Post Page Layout Change
 원래같았으면 라즈베리파이를 시작해보려고 했지만...  
 일단 홈페이지 레이아웃을 좀 수정했다.
 [졸작 팀원의 블로그](https://outstanding1301.github.io/)에서 많이 참고하였다.  

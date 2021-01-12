@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 21.01.09 기록
+title: 라즈베리파이 시작하기
 category: TiL
-tag: [RaspberryPi, Raspbian]
+tag: [RaspberryPi, RaspberryPi OS]
 ---
 
 # Getting Started with Raspberry Pi
@@ -19,8 +19,8 @@ tag: [RaspberryPi, Raspbian]
 졸업 작품에서는 영상 처리와 실시간 통신을 고려하여 생각해보면 라즈베리파이가 적합하다고 생각했다. 
 
 
-#### Install Raspbian
-일단 라즈비안 OS를 [공식 홈페이지](https://www.raspberrypi.org/software/) 에서 다운로드 받아야 한다.  
+#### Install RaspberryPi OS
+일단 라즈베리파이 OS를 [공식 홈페이지](https://www.raspberrypi.org/software/) 에서 다운로드 받아야 한다.  
 Lite 버전은 용량이 적은 대신 인터넷 연결이 필요하다고 되어있다. 귀찮으니 그냥 풀버전을 받기로 결정했다.
 받은 파일을 SD카드로 복사하여 넣어준다. 이때 SD카드는 포맷 방식이 **FAT**로 되어있는지 확인해야 한다.
 그다음 모니터를 연결하기 위해 (라즈베리파이)HDMI-모니터 연결 잭을 준비한다. 
@@ -76,4 +76,5 @@ MP4BOX -add (비디오이름.h264) (변경할 비디오이름.mp4)
 #### 여담
 나도 아직 테스트를 못해봤다...  
 내일은 일요일이지만 뭐... 가서 해봐야겠다  
+**추가)** 발음때문에 Raspbian -> Raspberry OS로 바꿨다고 한다..
 
