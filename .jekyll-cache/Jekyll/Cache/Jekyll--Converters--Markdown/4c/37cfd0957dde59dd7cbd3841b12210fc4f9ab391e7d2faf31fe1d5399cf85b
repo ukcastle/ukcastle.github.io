@@ -1,4 +1,4 @@
-I"t<h1 id="homepage-layout-change">Homepage Layout Change</h1>
+I"@<h1 id="post-page-layout-change">Post Page Layout Change</h1>
 <p>원래같았으면 라즈베리파이를 시작해보려고 했지만…<br />
 일단 홈페이지 레이아웃을 좀 수정했다.
 <a href="https://outstanding1301.github.io/">졸작 팀원의 블로그</a>에서 많이 참고하였다.<br />
@@ -50,6 +50,5 @@ Like 버튼을 누르면 광고가 표시되길래… 꼼수를 좀 부렸다.</
 <p>오늘 공부한 것은 여기까지이다. 사실 내부적으로 더 바꾸긴 했다.</p>
 
 <h4 id="여담">여담</h4>
-<p>좋아요 만들어봤자 나말고 누를 사람이 있을까?<br />
-내일은 꼭… 라즈베리..시작..한다..</p>
+<p>좋아요 만들어봤자 나말고 누를 사람이 있을까?</p>
 :ET
