@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 21.01.08 기록
+title: 윈도우 10에서 지킬 설치하기
 category: TiL
 tag: [WSL, Jekyll]
 ---
