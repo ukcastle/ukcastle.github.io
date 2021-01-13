@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 지킬 포스트에 목차, 댓글, 좋아요 추가하기 
+title: 21-01-10-TiL
 category: TiL
 tag: [Jekyll]
 ---

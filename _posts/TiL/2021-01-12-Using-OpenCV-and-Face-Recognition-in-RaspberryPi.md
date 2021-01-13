@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 라즈베리파이에 OpenCV 설치와 얼굴인식 라이브러리 사용 고민 
+title: 21-01-12-TiL 
 category: TiL
 tag: [RaspberryPi, OpenCV]
 ---
