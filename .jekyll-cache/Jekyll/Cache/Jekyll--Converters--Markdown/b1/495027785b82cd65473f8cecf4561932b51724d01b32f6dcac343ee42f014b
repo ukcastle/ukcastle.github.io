@@ -1,0 +1,61 @@
+I"�<h1 id="install-opencv4-in-raspberrypi-3">Install OpenCV4 in RaspBerryPi 3</h1>
+
+<p>오늘은 라즈베리에 카메라 연결을 한 뒤, OpenCV4를 설치했다.</p>
+
+<h4 id="connect-camera-module">Connect Camera Module</h4>
+
+<p><img src="https://github.com/jo631/jo631.github.io/blob/main/postimg/%EC%B9%B4%EB%A9%94%EB%9D%BC%EC%B0%8D%EC%9D%8C.jpg?raw=true" alt="카메라찍음" width="50%" heigth="50%" /></p>
+
+<p>이런식으로 <code class="language-plaintext highlighter-rouge">Camera</code> 포트에 잘 끼워주면 된다.<br />
+이제 설정을 해주자<br />
+다음 터미널에 <code class="language-plaintext highlighter-rouge">sudo raspi-config</code>을 입력하고 <code class="language-plaintext highlighter-rouge">Interface Option</code>에 들어간 뒤 Camera를 <strong>Enable</strong> 해준다.<br />
+이제 잘 연결이 되었는지 확인만 해보자.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>raspistill -o 이미지이름.jpg
+</code></pre></div></div>
+<p>잠시동안 디스플레이에 카메라 화면이 표시된 후 설정한 이름으로 저장이 된다.<br />
+<img src="https://github.com/jo631/jo631.github.io/blob/main/postimg/%EC%9D%B4%EB%AF%B8%EC%A7%80.jpg?raw=true" alt="이미지" width="50%" heigth="50%" /></p>
+
+<p>연결이 잘 됐는지만 확인했다. 근데 내 카메라 모듈은… 초점이 좀 멀리잡히는 것 같다.<br />
+당연하겠지만 오토포커싱 기능이 없네<br />
+<br /></p>
+
+<h4 id="install-opencv">Install OpenCV</h4>
+
+<p><a href="https://github.com/dltpdn">GitHub 링크</a>를 보고 적용했다.<br />
+deb파일을 만들어서 거의 원클릭수준으로 매우 쉽게 설치할 수 있다. 매우매우 좋다.</p>
+
+<p>일단 업데이트부터 해주자</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get upgrade
+</code></pre></div></div>
+
+<p>다음 HTTP 프로토콜을 이용하여 다운로드 받을수 있는 wget 명령어를 사용해 <a href="https://github.com/dltpdn/opencv-for-rpi/releases">GitHub</a> 링크에서 다운로드 한다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/dltpdn/opencv-for-rpi/releases/download/4.2.0_buster_pi3b/opencv4.2.0.deb.tar
+</code></pre></div></div>
+
+<p>다운로드받은 tar 파일의 압축을 풀어준다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tar -xvf opencv4.2.0.deb.tar
+</code></pre></div></div>
+
+<p>다음, deb파일들로 OpenCV4를 설치한다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install -y ./OpenCV*.deb
+</code></pre></div></div>
+<p>-y 옵션은 설치할 때 Y/N을 고르는 단계를 없애는것이다. 여러개를 한번에 인스톨할 때 좋다.</p>
+
+<p>이러면 설치가 완료됐다. 잘 됐는지 확인해보자.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pkg-config --modversion opencv4
+&gt;&gt; 4.2.0
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python
+import cv2
+cv2.__version__
+
+&gt;&gt; 4.2.0
+</code></pre></div></div>
+
+<p>이러면 잘 설치가 됐다.<br />
+내일은 Mask Detection 라이브러리에 대해 알아보려고 한다.</p>
+
+<h4 id="여담">여담</h4>
+:ET
