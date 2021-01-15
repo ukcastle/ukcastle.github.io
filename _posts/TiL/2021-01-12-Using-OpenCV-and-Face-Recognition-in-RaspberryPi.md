@@ -36,15 +36,7 @@ tag: [RaspberryPi, OpenCV]
 아무튼 [GitHub](https://github.com/dltpdn/opencv-for-rpi)페이지를 보고 따라해봤다.  
 
 ```
-sudo apt update
-sudo apt upgrade
-
-git clone https://github.com/dltpdn/opencv-for-rpi.git
-
-cd opencv-for-rpi/stetch/(원하는 버전)
-sudo apt install -y ./OpenCV*.deb
-
-pkg-config —modversion opencv 
+방법이 조금 바뀌어서 새로운 포스트에 수정했습니다.
 ```
 이렇게 따라오면, 성공적으로 OpenCV가 설치된다.
 

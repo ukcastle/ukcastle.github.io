@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 라즈베리파이 시작하기
+title: 21-01-09-TiL
 category: TiL
 tag: [RaspberryPi, RaspberryPi OS]
 ---
