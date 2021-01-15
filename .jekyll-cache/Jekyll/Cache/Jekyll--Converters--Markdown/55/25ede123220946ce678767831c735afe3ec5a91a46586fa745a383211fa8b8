@@ -1,4 +1,4 @@
-I"<h1 id="using-opencv-and-face-recognition-in-raspberrypi">Using OpenCV and Face Recognition in RaspberryPi</h1>
+I"�<h1 id="using-opencv-and-face-recognition-in-raspberrypi">Using OpenCV and Face Recognition in RaspberryPi</h1>
 
 <p>이제 본격적으로 클라이언트 설계를 해보려고 한다.<br />
 클라이언트의 요구사항은 다음과 같다.</p>
@@ -37,15 +37,7 @@
 미리 빌드된 .deb 파일로 OpenCV3 버전을 금방 설치할 수 있는 장점이 있다. 와우<br />
 아무튼 <a href="https://github.com/dltpdn/opencv-for-rpi">GitHub</a>페이지를 보고 따라해봤다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt update
-sudo apt upgrade
-
-git clone https://github.com/dltpdn/opencv-for-rpi.git
-
-cd opencv-for-rpi/stetch/(원하는 버전)
-sudo apt install -y ./OpenCV*.deb
-
-pkg-config —modversion opencv 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>방법이 조금 바뀌어서 새로운 포스트에 수정했습니다.
 </code></pre></div></div>
 <p>이렇게 따라오면, 성공적으로 OpenCV가 설치된다.</p>
 
