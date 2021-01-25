@@ -78,21 +78,21 @@ class StreamHandler(Handler):
                                                    size=(300, 300),
                                                    mean=(104.0, 177.0, 123.0))
 
-            # Up size frame to 50% (how the frame was before down sizing)
+            # 프레임을 다시 2배로 확장(이전에 감소시켰을 경우)
             #frame = _frame.scale(frame=frame, scale=2)
 
-            # If returns any detection
+            # detections에서 결과값이 있을 경우
             for i in range(0, detections.shape[2]):
                 
                 
-                # Get confidence associated with the detection
+                # detections 배열에서 개개인을 추출
                 confidence = detections[0, 0, i, 2]
 
-                # Filter weak detection
+                # 정확도가 낮은 예측을 걸러냄
                 if confidence < _application.CONFIDENCE:
                     continue
                 
-                # Calculate coordinates
+                # 박스 크기 생성
                 box = detections[0, 0, i, 3:7] * np.array([width,
                                                            height,
                                                            width,
@@ -158,9 +158,9 @@ class StreamHandler(Handler):
             """
             
             
-            # Convert frame into buffer for streaming
+            # 스트리밍을 위한 이미지 인코딩
             retval, buffer = cv2.imencode('.jpg', frame)
-            #buffer = cv2.imencode(frame)
+            # buffer = cv2.imencode(frame)
             # Write buffer to HTML Handler
             self.wfile.write(b'--FRAME\r\n')
             self.send_header('Content-Type', 'frame/jpeg')
@@ -192,3 +192,7 @@ if __name__ == '__main__':
 
 
 ```
+
+돌려보면서 느낀건데... 라즈베리파이에선 너무 과하다
+
+다른 보드를 구해서 해보던지, 아니면 송출만 HTTP로 보내고 서버에서 얼굴을 판별한다던지 해야겠다.  
