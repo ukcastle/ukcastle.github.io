@@ -1,0 +1,169 @@
+---
+layout: default
+---
+
+<!-- Post Begin -->
+<div class="post">
+  <h1 class="post-title">{{ page.title }}</h1>
+  <span class="post-date">{{ page.date | date_to_string }}</span>
+  {% if page.tags %} | 
+  {% for tag in page.tags %}
+    <a href="{{ site.baseurl }}{{ site.tag_page }}#{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
+  {% endfor %}
+  {% endif %}
+  <article class="post-article">
+    <div class="toc">
+      <a href="#">&lt;맨 위로&gt;</a>
+      {% include toc.html html=content %}
+    </div>
+    {{ content }}
+  </article>
+  
+  <hr class="endLine">
+
+</div>
+<!-- Post End -->
+
+<!-- LikeBtn.com Begin -->
+<div style="text-align: center;">
+  <span class="likebtn-wrapper"
+    data-theme="custom" 
+    data-btn_size="33" 
+    data-f_size="20" 
+    data-icon_size="20" 
+    data-icon_l="thmb1" 
+    data-icon_d="thmb7-u" 
+    data-icon_l_c_v="#1802f5" 
+    data-icon_d_c_v="#1802f5" 
+    data-label_c_v="#000000" 
+    data-brdr_c="#777777" 
+    data-ef_voting="push" 
+    data-white_label="true" 
+    data-show_like_label="false" 
+    data-show_dislike_label="true" 
+    data-like_enabled="false" 
+    data-popup_disabled="true" 
+    data-tooltip_enabled="false" 
+    data-i18n_dislike="Like">
+  </span>
+</div>
+
+<script>
+(function(d,e,s){
+  if(d.getElementById("likebtn_wjs"))
+    return;a=d.createElement(e);
+  m=d.getElementsByTagName(e)[0];
+  a.async=1;a.id="likebtn_wjs";
+  a.src=s;
+  m.parentNode.insertBefore(a, m)
+})
+(document,"script","//w.likebtn.com/js/w/widget.js");
+</script>
+<!-- LikeBtn.com End -->
+
+
+<!-- Related Post Begin -->
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    {% for post in site.related_posts limit:3 %}
+      <li>
+        <h3>
+          <a href="{{ site.baseurl }}{{ post.url }}">
+            {{ post.title }}
+            <small>{{ post.date | date_to_string }}</small>
+          </a>
+        </h3>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- Related Post End -->
+
+
+
+<!-- utterances comment Begin -->
+<script src="https://utteranc.es/client.js"
+        repo="jo631/jo631.github.io"
+        issue-term="pathname"
+        label="comments"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<!-- utterances comment End -->
+
+<!-- Scroll Spy Begin -->
+<script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function(elem) {
+        return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function(elem) {
+        return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
+
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+  
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function(e) {
+    if (window.scrollY >= articleY-60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function(header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length-1];
+
+      var currentA = tocNodes.filter(function(tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+      
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before) 
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before) 
+          before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
+<!-- Scroll Spy End -->
