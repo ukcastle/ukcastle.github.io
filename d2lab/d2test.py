@@ -31,6 +31,7 @@ def url_to_image(url):
     # return the image
     return image
 
+
 #main
 def main():
     img = url_to_image(imgPath)
