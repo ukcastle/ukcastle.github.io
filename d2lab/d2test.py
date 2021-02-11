@@ -3,6 +3,7 @@ import cv2
 import urllib.request
 import numpy as np
 
+
 '''
 static
 '''
