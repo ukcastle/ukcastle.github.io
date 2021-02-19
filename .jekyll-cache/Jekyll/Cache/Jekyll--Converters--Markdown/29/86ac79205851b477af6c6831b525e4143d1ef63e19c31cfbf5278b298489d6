@@ -1,0 +1,19 @@
+I"<p>Odroid에 리눅스 설치하자마자 에러가 났다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$sudo</span> killall apt apt-get
+
+진행중인 프로세스가 없다고 뜨면
+
+<span class="nv">$sudo</span> <span class="nb">rm</span> /var/lib/apt/lists/lock
+<span class="nv">$sudo</span> <span class="nb">rm</span> /var/cache/apt/archives/lock
+<span class="nv">$sudo</span> <span class="nb">rm</span> /var/lib/dpkg/lock<span class="k">*</span>
+</code></pre></div></div>
+
+<p>실행한 다음</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$sudo</span> dbkg <span class="nt">--configure</span> <span class="nt">-a</span>
+<span class="nv">$sudo</span> apt update 
+</code></pre></div></div>
+
+<p>를 하면 정상적으로 해결이 된다.</p>
+:ET

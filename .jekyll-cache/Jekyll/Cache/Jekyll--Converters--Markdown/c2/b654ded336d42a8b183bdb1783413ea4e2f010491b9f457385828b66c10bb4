@@ -1,0 +1,191 @@
+I"�Z<p>실제로 라즈베리파이의 카메라로 영상을 찍으며 얼굴 인식을 실험해봤다. <br />
+<a href="https://github.com/jo631/frames-client">링크</a>에 현재까지의 진행상황을 저장하고있다.<br />
+현재 진행상황으로는 비디오의 프레임당 모델을 적용시켜 실행했는데, 라즈베리파이의 CPU로는 도저히 따라갈 수 없는 성능이다.</p>
+
+<p>일단 여태까지 만든 파이썬 코드들을 파헤쳐보려고 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="kn">from</span> <span class="nn">src.common.package.config</span> <span class="kn">import</span> <span class="n">application</span>
+<span class="kn">from</span> <span class="nn">src.opencv.package.config</span> <span class="kn">import</span> <span class="n">application</span> <span class="k">as</span> <span class="n">_application</span>
+<span class="kn">from</span> <span class="nn">src.common.package.http</span> <span class="kn">import</span> <span class="n">server</span> <span class="k">as</span> <span class="n">_server</span>
+<span class="kn">from</span> <span class="nn">src.common.package.http.handler</span> <span class="kn">import</span> <span class="n">Handler</span>
+<span class="kn">from</span> <span class="nn">src.common.package.camera.capture</span> <span class="kn">import</span> <span class="n">Capture</span> <span class="k">as</span> <span class="n">_capture</span>
+<span class="kn">from</span> <span class="nn">src.common.package.frame.action</span> <span class="kn">import</span> <span class="n">Action</span> <span class="k">as</span> <span class="n">_frame</span>
+<span class="kn">from</span> <span class="nn">src.common.package.frame.draw</span> <span class="kn">import</span> <span class="n">Draw</span> <span class="k">as</span> <span class="n">_draw</span>
+<span class="kn">from</span> <span class="nn">src.opencv.package.opencv.opencv</span> <span class="kn">import</span> <span class="n">OpenCV</span>
+
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.applications.mobilenet_v2</span> <span class="kn">import</span> <span class="n">preprocess_input</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">img_to_array</span>
+
+<span class="c1"># Constant
+</span><span class="n">_opencv</span> <span class="o">=</span> <span class="n">OpenCV</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s">"mask_detector.model"</span><span class="p">)</span>
+
+
+<span class="c1"># Imutils 라이브러리를 사용해 HTTP 스트리밍을 한다.
+# StreamHandler 클래스를 오버라이드하여 적용시킨다
+</span><span class="k">class</span> <span class="nc">StreamHandler</span><span class="p">(</span><span class="n">Handler</span><span class="p">):</span>
+
+    
+    <span class="c1"># Handler.stream() 함수 오버라이드
+</span>    <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Handler</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'[INFO] Overriding stream method...'</span><span class="p">)</span>
+
+        <span class="c1"># Imutils 라이브러리의 VideoStream 클래스 초기화
+</span>        <span class="n">capture</span> <span class="o">=</span> <span class="n">_capture</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">application</span><span class="p">.</span><span class="n">CAPTURING_DEVICE</span><span class="p">,</span>
+                           <span class="n">use_pi_camera</span><span class="o">=</span><span class="n">application</span><span class="p">.</span><span class="n">USE_PI_CAMERA</span><span class="p">,</span>
+                           <span class="n">resolution</span><span class="o">=</span><span class="n">application</span><span class="p">.</span><span class="n">RESOLUTION</span><span class="p">,</span>
+                           <span class="n">frame_rate</span><span class="o">=</span><span class="n">application</span><span class="p">.</span><span class="n">FRAME_RATE</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">application</span><span class="p">.</span><span class="n">USE_PI_CAMERA</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'[INFO] Warming up pi camera...'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'[INFO] Warming up camera...'</span><span class="p">)</span>
+
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s">'[INFO] Start capturing...'</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="c1"># 한 순간을 캡처한다
+</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">capture</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+
+            <span class="c1"># 프레임 크기 50퍼센트 감소 ( 라즈베리파이의 성능 향상 )
+</span>            <span class="c1">#frame = _frame.scale(frame=frame, scale=0.5)
+</span>
+            <span class="c1"># 프레임을 흑백으로 변환( 1채널밖에 없어서 오류가 발생함, 고쳐야 
+</span>            <span class="c1">#frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+</span>
+            <span class="c1"># 프레임의 height, width 추출
+</span>            <span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span> <span class="o">=</span> <span class="n">frame</span><span class="p">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+            
+            <span class="c1"># OpenCV의 얼굴인식 모델 사용, src/dnn/ 안에 정의되어있음
+</span>            <span class="n">detections</span> <span class="o">=</span> <span class="n">_opencv</span><span class="p">.</span><span class="n">dnn_face_detector</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
+                                                   <span class="n">scale_factor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                                                   <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
+                                                   <span class="n">mean</span><span class="o">=</span><span class="p">(</span><span class="mf">104.0</span><span class="p">,</span> <span class="mf">177.0</span><span class="p">,</span> <span class="mf">123.0</span><span class="p">))</span>
+
+            <span class="c1"># 프레임을 다시 2배로 확장(이전에 감소시켰을 경우)
+</span>            <span class="c1">#frame = _frame.scale(frame=frame, scale=2)
+</span>
+            <span class="c1"># detections에서 결과값이 있을 경우
+</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">detections</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+                
+                
+                <span class="c1"># detections 배열에서 개개인을 추출
+</span>                <span class="n">confidence</span> <span class="o">=</span> <span class="n">detections</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+                <span class="c1"># 정확도가 낮은 예측을 걸러냄
+</span>                <span class="k">if</span> <span class="n">confidence</span> <span class="o">&lt;</span> <span class="n">_application</span><span class="p">.</span><span class="n">CONFIDENCE</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                
+                <span class="c1"># 박스 크기 생성
+</span>                <span class="n">box</span> <span class="o">=</span> <span class="n">detections</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">width</span><span class="p">,</span>
+                                                           <span class="n">height</span><span class="p">,</span>
+                                                           <span class="n">width</span><span class="p">,</span>
+                                                           <span class="n">height</span><span class="p">])</span>
+
+                <span class="s">"""
+                (left, top, right, bottom) = box.astype('int')
+                coordinates = {'left': left,
+                               'top': top,
+                               'right': right,
+                               'bottom': bottom}
+                text = "{:.2f}%".format(confidence * 100)
+                frame = _draw.rectangle(frame=frame,
+                                        coordinates=coordinates,
+                                        text=text)
+                """</span>
+
+                <span class="c1"># 마스크 확인
+</span>                <span class="c1"># compute the (x, y)-coordinates of the bounding box for
+</span>			    <span class="c1"># the object
+</span>                <span class="p">(</span><span class="n">startX</span><span class="p">,</span> <span class="n">startY</span><span class="p">,</span> <span class="n">endX</span><span class="p">,</span> <span class="n">endY</span><span class="p">)</span> <span class="o">=</span> <span class="n">box</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s">"int"</span><span class="p">)</span>
+
+			    <span class="c1"># ensure the bounding boxes fall within the dimensions of
+</span>			    <span class="c1"># the frame
+</span>                <span class="p">(</span><span class="n">startX</span><span class="p">,</span> <span class="n">startY</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">startX</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">startY</span><span class="p">))</span>
+                <span class="p">(</span><span class="n">endX</span><span class="p">,</span> <span class="n">endY</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">endX</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">endY</span><span class="p">))</span>
+
+		    	<span class="c1"># extract the face ROI, convert it from BGR to RGB channel
+</span>		    	<span class="c1"># ordering, resize it to 224x224, and preprocess it
+</span>                <span class="n">face</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">startY</span><span class="p">:</span><span class="n">endY</span><span class="p">,</span> <span class="n">startX</span><span class="p">:</span><span class="n">endX</span><span class="p">]</span>
+                <span class="n">face</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+                <span class="n">face</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
+                <span class="n">face</span> <span class="o">=</span> <span class="n">img_to_array</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+                <span class="n">face</span> <span class="o">=</span> <span class="n">preprocess_input</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+                <span class="n">face</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+		    	<span class="c1"># pass the face through the model to determine if the face
+</span>		    	<span class="c1"># has a mask or not
+</span>                <span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">withoutMask</span><span class="p">)</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">face</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+		    	<span class="c1"># determine the class label and color we'll use to draw
+</span>		    	<span class="c1"># the bounding box and text
+</span>                <span class="n">label</span> <span class="o">=</span> <span class="s">"Mask"</span> <span class="k">if</span> <span class="n">mask</span> <span class="o">&gt;</span> <span class="n">withoutMask</span> <span class="k">else</span> <span class="s">"No Mask"</span>
+                <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="n">label</span> <span class="o">==</span> <span class="s">"Mask"</span> <span class="k">else</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+		    	<span class="c1"># include the probability in the label
+</span>                <span class="n">label</span> <span class="o">=</span> <span class="s">"{}: {:.2f}%"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">withoutMask</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+
+		    	<span class="c1"># display the label and bounding box rectangle on the output
+</span>		    	<span class="c1"># frame
+</span>                <span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">startX</span><span class="p">,</span> <span class="n">startY</span> <span class="o">-</span> <span class="mi">10</span><span class="p">),</span>
+                	<span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="p">(</span><span class="n">startX</span><span class="p">,</span> <span class="n">startY</span><span class="p">),</span> <span class="p">(</span><span class="n">endX</span><span class="p">,</span> <span class="n">endY</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            
+
+
+            <span class="s">"""
+            # Write date time on the frame
+            frame = _draw.text(frame=frame,
+                               coordinates={'left': application.WIDTH - 150, 'top': application.HEIGHT - 20},
+                               text=time.strftime('%d/%m/%Y %H:%M:%S', time.localtime()),
+                               font_color=(0, 0, 255))
+            """</span>
+            
+            
+            <span class="c1"># 스트리밍을 위한 이미지 인코딩
+</span>            <span class="n">retval</span><span class="p">,</span> <span class="nb">buffer</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imencode</span><span class="p">(</span><span class="s">'.jpg'</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+            <span class="c1"># buffer = cv2.imencode(frame)
+</span>            <span class="c1"># Write buffer to HTML Handler
+</span>            <span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s">'--FRAME</span><span class="se">\r\n</span><span class="s">'</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">send_header</span><span class="p">(</span><span class="s">'Content-Type'</span><span class="p">,</span> <span class="s">'frame/jpeg'</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">send_header</span><span class="p">(</span><span class="s">'Content-Length'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">buffer</span><span class="p">))</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">end_headers</span><span class="p">()</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">buffer</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s">'</span><span class="se">\r\n</span><span class="s">'</span><span class="p">)</span>
+
+
+
+<span class="c1">##
+# Method main()
+##
+</span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">address</span> <span class="o">=</span> <span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">application</span><span class="p">.</span><span class="n">HTTP_PORT</span><span class="p">)</span>
+        <span class="n">server</span> <span class="o">=</span> <span class="n">_server</span><span class="p">.</span><span class="n">Server</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">StreamHandler</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'[INFO] HTTP server started successfully at %s'</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">server_address</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'[INFO] Waiting for client to connect to port %s'</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">application</span><span class="p">.</span><span class="n">HTTP_PORT</span><span class="p">))</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">serve_forever</span><span class="p">()</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">socket</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'[INFO] HTTP server closed successfully.'</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'[ERROR] Exception: %s'</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+
+</code></pre></div></div>
+
+<p>돌려보면서 느낀건데… 라즈베리파이에선 너무 과하다</p>
+
+<p>다른 보드를 구해서 해보던지, 아니면 송출만 HTTP로 보내고 서버에서 얼굴을 판별한다던지 해야겠다.</p>
+:ET
