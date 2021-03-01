@@ -46,3 +46,4 @@ bower_components
 
 # custom
 .jekyll-cache
+.jekyll-cache/Jekyll/Cache/*
