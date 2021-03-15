@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func main() {
+func main2() {
 	switch os.Args[1] {
 	case "1":
 		fetch1()

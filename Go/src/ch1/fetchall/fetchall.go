@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func main() {
+func main4() {
 	switch os.Args[1] {
 	case "1":
 		fetchAll()

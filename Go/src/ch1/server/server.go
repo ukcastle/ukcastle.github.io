@@ -8,7 +8,7 @@ import (
 	"sync"
 )
 
-func main() {
+func main5() {
 	switch os.Args[1] {
 	case "1":
 		server1()
