@@ -26,11 +26,8 @@ func main() {
 func fetch1() {
 
 	for _, url := range os.Args[2:] {
-		resp, err := http.Get(url)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
-			os.Exit(1)
-		}
+		resp := getResponse(url)
+
 		b, err := ioutil.ReadAll(resp.Body)
 		resp.Body.Close()
 
@@ -43,24 +40,38 @@ func fetch1() {
 	}
 }
 
+func getResponse(url string) *http.Response {
+
+	resp, err := http.Get(url)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
+		return nil
+	}
+
+	return resp
+}
+
+func readResBody(resp *http.Response) {
+
+	io.Copy(os.Stdout, resp.Body)
+
+	// b, err := ioutil.ReadAll(resp.Body)
+
+	// if err != nil {
+	// 	fmt.Fprintf(os.Stderr, "fetch: reading : %v\n", err)
+	// 	os.Exit(1)
+	// }
+
+	// fmt.Printf("%s\n", b)
+
+	resp.Body.Close()
+}
+
 func fetchPrac1() {
 	// io.Copy(dst, src)를 이용하고 os.Stdout을 경로로 사용
 	for _, url := range os.Args[2:] {
-		resp, err := http.Get(url)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
-			os.Exit(1)
-		}
-		io.Copy(os.Stdout, resp.Body)
-		//b, err := ioutil.ReadAll(resp.Body)
-		resp.Body.Close()
-
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
-			os.Exit(1)
-		}
-
-		//fmt.Printf("%s\n", b)
+		readResBody(getResponse(url))
 	}
 }
 func fetchPrac2() {
