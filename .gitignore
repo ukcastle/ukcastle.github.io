@@ -48,3 +48,6 @@ bower_components
 .jekyll-cache
 .jekyll-cache/Jekyll/Cache/*
 d2
+Go/pkg/*
+Go/bin/*
+.jekyll-cache/*
