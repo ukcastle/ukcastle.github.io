@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 21-01-09-TiL
-category: TiL
+category: RaspberryPi
 tag: [RaspberryPi, RaspberryPi OS]
 ---
 

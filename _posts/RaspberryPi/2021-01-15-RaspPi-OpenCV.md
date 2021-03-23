@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 라즈베리파이 카메라 설정과 OpenCV4 설치
-category: TiL
+category: RaspberryPi
 tag: [RaspberryPi, OpenCV]
 ---
 

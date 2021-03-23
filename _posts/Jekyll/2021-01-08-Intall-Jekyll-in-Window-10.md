@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 21-01-08-TiL
-category: TiL
+category: Jekyll
 tag: [WSL, Jekyll]
 ---
 

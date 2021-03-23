@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 라즈베리파이 비디오에서 모델을 적용시키기
-category: TiL
+category: RaspberryPi
 tag: [RaspberryPi, OpenCV, Keras] 
 ---
 

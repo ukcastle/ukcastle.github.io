@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 21-01-12-TiL 
-category: TiL
+category: RaspberryPi
 tag: [RaspberryPi, OpenCV]
 ---
 

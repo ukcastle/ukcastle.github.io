@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 라즈베리파이에서 Face-Mask-Detection 라이브러리 사용하기
-category: TiL
+category: RaspberryPi
 tag: [RaspberryPi, OpenCV]
 ---
  

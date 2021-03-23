@@ -38,8 +38,10 @@ nav:
     - '/'
   Categories:           
     - '/blog/categories/'
-    - { TIL (Today I Learned): '/blog/categories/#TiL' }
+    - { RaspberryPi : '/blog/categories/#RaspberryPi' }
+    - { Python : '/blog/categories/#Python' }
     - { Go: '/blog/categories/#GO'}
+    - { Jekyll : '/blog/categories/#Jekyll' }
     - { 잡다한 이야기: '/blog/categories/#etc' }
   Tag: 
     - '/blog/tags/' 

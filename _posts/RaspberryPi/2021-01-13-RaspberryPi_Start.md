@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 라즈베리파이 한글 설치와 와이파이 연결 
-category: TiL
+category: RaspberryPi
 tag: [RaspberryPi]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 리눅스 Could not get lock /var/lib/dpkg/lock-frontend
-category: TiL
+category: RaspberryPi
 tag: [RaspberryPi, OpenCV, Keras] 
 ---
 

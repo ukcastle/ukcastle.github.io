@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 21-01-10-TiL
-category: TiL
+category: Jekyll
 tag: [Jekyll]
 ---
 
