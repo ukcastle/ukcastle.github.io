@@ -9,7 +9,8 @@ import (
 	"golang.org/x/net/html"
 )
 
-// 146쪽
+// 146쪽 재귀 호출로 링크를 찾음
+
 func main() {
 
 	url := os.Args[1]
