@@ -50,5 +50,4 @@ func topoSort(m map[string][]string) (order []string) {
 	sort.Strings(keys)
 	visitAll(keys)
 	return
-
 }
