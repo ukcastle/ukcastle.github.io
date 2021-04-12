@@ -55,13 +55,13 @@ public:
 
 #### 절차
 
-이 리팩터링을 시작하기 전에, *실질 생성자가 존재하는지 찾아본다. 실질 생성자가 없다면 Chain Constructors(448) 리팩터링을 적용해 하나 만든다.
+이 리팩터링을 시작하기 전에, *실질 생성자가 존재하는지 찾아본다. 실질 생성자가 없다면 [Chain Constructors](https://jo631.github.io/refactoring/2021/04/13/Chain-Constructors/) 리팩터링을 적용해 하나 만든다.
 
 *실질 생성자: 실질적인 생성 기능을 모두 구현하는 생성자로서, 다른 생성자들은 이 실질 생성자에게 작업을 위임하는 역할만 하는 경우를 뜻한다.
 
 1. 여러 생성자 중 하나를 선택하여 그것을 호출하는 클라이언트 코드를 찾는다. 그리고 그 코드에 [Extract Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-method)를 적용해 별도의 메소드(`public static`로 지정)로 뽑아낸다. 이렇게 만든 메서드를 생성 메서드라 하고, [Move Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#move-method)를 적용해 이 생성 메서드를 해당 생성자를 포함하고 있는 클래스로 옮긴다.  
 
-2. 선택한 생성자를 사용하는 곳(즉 동일한 종류의 인스턴스를 사용하는 곳)을 모두 찾아 앞에서 만든 생성 메서드를 호출하도록 수정한다.  
+2. 선택한 생성자를 사용하는 곳(즉 동일한 종류의 인스턴스를 사용하는 곳)을 모두 찾아 앞에서 만든 생성 메서드를 호출하도록 **수정**한다.  
 
 3. 만약 선택한 생성자가 다른 생성자를 호출하고 있다면, 생성 메소드에서 선택한 생성자 대신 호출되는 생성자를 사용하도록 고친다. [Inline Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#inline-method) 리팩터링을 적용할 때 처럼 생성자를 인라인화하면 된다.  
 
