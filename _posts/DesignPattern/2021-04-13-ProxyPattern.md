@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Proxy Pattern
-category: Refactoring
-tag: [DesignPattern, Refactoring] 
+category: DesignPattern
+tag: [DesignPattern] 
 ---
 
 Refactoring 책을 읽으면서 설명이 부족했던 디자인패턴들을 공부하는 공간이다.  
