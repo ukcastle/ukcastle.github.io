@@ -140,9 +140,9 @@ Factory Method를 사용하는 것이 new 연산자나, 생성자를 사용하�
 3. 다음은 수퍼클래스를 수정해야 한다. 만약 직접 수정할 수 없는 상황이거나, 수정하지 않는것이 더 좋다고 판단될 경우는 [Extract Superclass](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-superclass)를 사용하고, 원래의 수퍼클래스를 상속하는 서브클래스들은 새로 만들어진 수퍼클래스를 상속하게 바꾼다.  
 
 4. 유사 메소드에 대해 From Template Method 를 적용한다. 이 과정에서는 [Pull Up Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#pull-up-method)가 포함되는데, 이 때는 꼭 절차에 나온 조언을 따르는 것을 추천한다.
-> 타입 검사를 엄격하게 하는 프로그래밍 언어를 사용하고, 옮기려는 메소드에서 두 서브클래스에는 있지만 수퍼클래스에는 없는 메소드를 호출한다면, 해당 메소드를 수퍼클래스에 추상 메소드로 선언하라.
+    > 타입 검사를 엄격하게 하는 프로그래밍 언어를 사용하고, 옮기려는 메소드에서 두 서브클래스에는 있지만 수퍼클래스에는 없는 메소드를 호출한다면, 해당 메소드를 수퍼클래스에 추상 메소드로 선언하라.
 
-이렇게 하면, 팩토리 메소드를 구현하게 된 것이다. 이제 형제클래스들은 각각 FactoryMethod:ConcreteCreator가 되었다.  
+    이렇게 하면, 팩토리 메소드를 구현하게 된 것이다. 이제 형제클래스들은 각각 FactoryMethod:ConcreteCreator가 되었다.  
 
 5. 관련 형제클래스에 또 다른 유사 메소드가 존재하고 그 메소드도 수정하는것이 좋다 판단되면 1~4를 반복한다.  
 
