@@ -100,7 +100,7 @@ class Test {
 
 #### 동기
 
-[Replace Constructors with Creation Methods](https://jo631.github.io/refactoring/2021/04/13/Replace-Constructors-With-Creation-Methods/) 리팩터링을 구현하려면 원하는 객체를 생성해서 리턴하는 메소드를 클래스에 추가하기만 하면 된다.  그 메소드는 `static`메법일 수도 있고 아닐수도 있다. 다만 Factory Method 패턴의 경우 다음과 같은 필수 요소가 필요하다.  
+[Replace Constructors with Creation Methods](https://jo631.github.io/refactoring/2021/04/13/Replace-Constructors-With-Creation-Methods/) 리팩터링을 구현하려면 원하는 객체를 생성해서 리턴하는 메소드를 클래스에 추가하기만 하면 된다.  그 메소드는 `static`메법일 수도 있고 아닐수도 있다. 다만 [Factory Method](https://jo631.github.io/designpattern/2021/04/14/Factory/#%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%8C%A8%ED%84%B4) 패턴의 경우 다음과 같은 필수 요소가 필요하다.  
 >1. 팩토리 메서드가 생성해 리턴하는 객체의 집합을 대표하는 하나의 타입(Interface, Abstract Class, Class)
 >2. 위 타입을 구현하는 클래스들
 >3. 팩토리 메소드를 구현하는 여러개의 클래스
