@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Encapsulate-Classes-with-Factory (124)
+title: Encapsulate Classes with Factory (124)
 category: Refactoring
 tag: [DesignPattern, Refactoring] 
 ---
