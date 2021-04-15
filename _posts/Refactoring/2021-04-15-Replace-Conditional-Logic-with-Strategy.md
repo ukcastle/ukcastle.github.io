@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Compose Method (179)
+title: Replace Conditional Logic with Strategy (187)
 category: Refactoring
 tag: [DesignPattern, Refactoring] 
 ---
@@ -61,7 +61,7 @@ Strategy 패턴을 사용한 설계를 구현할 때 Context 클래스가 Strate
 
     다음 2번을 처리하는데, **Context에서 더이상 쓰이지 않는 함수들을 Strategy 클래스로 이동**시킨다.
 <br>
-3. Context 클래스의 코드 중 Strategy 객체를 생성하고 필드에 대입하는 부분에 [Extract Parameter]()을 적용하여 클라이언트가 **Context에 Strategy를 넘겨주는 모양새**가 되도록 한다.  
+3. Context 클래스의 코드 중 Strategy 객체를 생성하고 필드에 대입하는 부분에 [Extract Parameter](https://jo631.github.io/refactoring/2021/04/16/Extract-Parameter/)을 적용하여 클라이언트가 **Context에 Strategy를 넘겨주는 모양새**가 되도록 한다.  
 <br>
 4. Strategy의 계산 메소드에 [Replace Conditional with Polymorphism](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-conditional-with-polymorphism)을 적용한다. 이 때 [Replace Type Code with Subclasses](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-type-code-with-subclasses)를 사용할 것인지, 아니면  [Replace Type Code with State/strategy](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-type-code-with-statestrategy)를 사용할 것이지 결정해야 한다. 어지간해선 **전자**를 선택하는 것이 좋다. 타입 코드가 명확하게 존재하지 않더라도 전자를 적용할 수 있다. **계산 메서드의 조건 로직의 검사 조건을 타입 코드**라고 생각하면 된다.  
 
