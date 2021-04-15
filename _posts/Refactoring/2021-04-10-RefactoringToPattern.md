@@ -273,3 +273,8 @@ Employee* createEmployee(name, type) {
     case "manager":  return new Manager (name);
   }
 ```
+
+#### Replace Type Code with State/Strategy
+
+클래스의 행동에 영향을 미치는 타입 코드가 있지만, 서브 클래스화 할 수 없다면 해당 타입코드를 State/Strategy 객체로 변경하라
+
