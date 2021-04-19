@@ -74,7 +74,7 @@ class ProductFinder{
 
     public List byColor(Color color){
         List returnList;
-        for (Product p : self.allProduct){
+        for (Product p : this.allProduct){
             if (p.getColor() == color){
                 returnList.append(p);
             }
@@ -84,7 +84,7 @@ class ProductFinder{
 
     public List byColorAndBelowPrice(Color color, float price){
         List returnList;
-        for (Product p : self.allProduct){
+        for (Product p : this.allProduct){
             if (p.getColor() == color && p.getPrice < price){
                 returnList.append(p);
             }
@@ -208,9 +208,9 @@ public class TagNode{
     public string toString(){
         String result;
         result = 
-            "<" + self.name + self.attribute + ">" +
-            self.value +
-            "</" + self.name + ">";
+            "<" + this.name + this.attribute + ">" +
+            this.value +
+            "</" + this.name + ">";
         
         return result;
     }
@@ -273,7 +273,7 @@ public void testCompositeTagOneChild(){
 
  이 테스트를 통과하기 위해 기존 `TagNode`클래스를 수정해보자.  
 
- ```java
+```java
 public class TagNode{
     private String name = "";
     private String value = "";
@@ -298,27 +298,27 @@ public class TagNode{
 
     public string toString(){
         String result;
-        result = "<" + self.name + self.attribute + ">";
-        Iterator it = self.child().iterator();
+        result = "<" + this.name + this.attribute + ">";
+        Iterator it = this.child().iterator();
         while(it.hasNext()){
             TagNode node = (TagNode)it.next();
             result += node.toString();
         }
-        result += self.value;
-        result += "</" + self.name + ">";
+        result += this.value;
+        result += "</" + this.name + ">";
         
         return result;
     }
 
     private List child(){
-        if(self.child == null){
-            self.child == new ArrayList();
+        if(this.child == null){
+            this.child == new ArrayList();
         }
-        return self.child;
+        return this.child;
     }
 
     public void add(TagNode n){
-        self.child().add(n)
+        this.child().add(n)
     }
 }
  ``` 
@@ -372,6 +372,6 @@ String result = ordersTag.toString();
 위의 리팩토링은, `TagNode` 단 한개의 클래스로 모든 행동이 가능하여 인터페이스를 추가하지 않았다. 만약 TagNode만으로 해결이 안 될 코드면, 인터페이스를 만들고 `toString()` 메서드를 구현해야 할 것이다.  
 
 반복되는 코드들에 대해 리팩토링을 추가로 진행할 수도 있을 것이다.  
-
+[Encapsulate Composite with Builder](https://jo631.github.io/refactoring/2021/04/20/Encapsulate-Composite-with-Builder/)를 통해 알아보자.  
 
 
