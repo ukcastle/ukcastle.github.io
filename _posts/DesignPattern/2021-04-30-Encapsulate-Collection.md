@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Composite Pattern
+title: Encapsulate Collection
 category: DesignPattern
 tag: [DesignPattern] 
 ---
