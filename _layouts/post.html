@@ -111,10 +111,10 @@ layout: default
   }
 
   var title = document.getElementsByClassName("post-title")[0];
-  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+  var titleY = window.pageYOffset + (title.getBoundingClientRect().top + title.getBoundingClientRect().bottom) / 2;
   
   var article = document.getElementsByClassName("post-article")[0];
-  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  var articleY = window.pageYOffset + (article.getBoundingClientRect().top + article.getBoundingClientRect().bottom) / 2;
 
   var toc = document.getElementsByClassName("toc")[0];
 
@@ -132,7 +132,7 @@ layout: default
     }
 
     var current = headerNodes.filter(function(header) {
-      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      var headerY = window.pageYOffset + (header.getBoundingClientRect().top + header.getBoundingClientRect().bottom ) / 2;
       return window.scrollY >= headerY - 60;
     });
 

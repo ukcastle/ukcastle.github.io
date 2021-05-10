@@ -51,3 +51,5 @@ d2
 Go/pkg/*
 Go/bin/*
 .jekyll-cache/*
+.jekyll-cache/Jekyll/Cache/*
+.jekyll-cache/Jekyll/Cache/Jekyll--Cache/b7/*
