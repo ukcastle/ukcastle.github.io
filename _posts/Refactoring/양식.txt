@@ -1,0 +1,26 @@
+---
+layout: post
+title: 제목
+category: Refactoring
+tag: [DesignPattern, Refactoring] 
+---
+
+#### 개요
+
+>
+
+<br>
+
+#### 동기
+
+##### 장점
+
+##### 단점
+
+<br>
+
+#### 절차
+
+<br>
+
+#### 구현
