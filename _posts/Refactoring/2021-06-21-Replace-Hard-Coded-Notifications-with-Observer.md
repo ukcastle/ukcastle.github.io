@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Replace Hard-Coded Notifications with Observer
+title: Replace Hard-Coded Notifications with Observer (319)
 category: Refactoring
 tag: [DesignPattern, Refactoring] 
 ---
