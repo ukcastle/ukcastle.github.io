@@ -15,6 +15,8 @@ tag: [DesignPattern, Refactoring]
 
 #### 동기
 
+
+
 ##### 장점
 
 ##### 단점
