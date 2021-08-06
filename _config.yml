@@ -74,6 +74,6 @@ excerpt_separator: "\n\n"
 incremental: false
 kramdown:
   math_engine: mathjax
-  
-plugins:
-  - jekyll-katex
+
+# plugins:
+#   - jekyll-katex
