@@ -38,13 +38,14 @@ nav:
     - '/'
   Categories:           
     - '/blog/categories/'
-    - { RaspberryPi : '/blog/categories/#RaspberryPi' }
-    - { Python : '/blog/categories/#Python' }
-    - { Refactoring : '/blog/categories/#Refactoring'}
+    - { Boostcamp : '/blog/categories/#BC' }
     - { DesignPattern : '/blog/categories/#DesignPattern'}
     - { Go: '/blog/categories/#GO'}
     - { Jekyll : '/blog/categories/#Jekyll' }
-    - { 잡다한 이야기: '/blog/categories/#etc' }
+    - { Jetson : '/blog/categories/#Jetson' }
+    - { Python : '/blog/categories/#Python' }
+    - { RaspberryPi : '/blog/categories/#RaspberryPi' }
+    - { Refactoring : '/blog/categories/#Refactoring'}
   Tag: 
     - '/blog/tags/' 
   #About:          
