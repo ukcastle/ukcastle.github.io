@@ -38,14 +38,14 @@ nav:
     - '/'
   Categories:           
     - '/blog/categories/'
-    - { Boostcamp : '/blog/categories/#BC' }
-    - { DesignPattern : '/blog/categories/#DesignPattern'}
-    - { Go: '/blog/categories/#GO'}
-    - { Jekyll : '/blog/categories/#Jekyll' }
-    - { Jetson : '/blog/categories/#Jetson' }
-    - { Python : '/blog/categories/#Python' }
-    - { RaspberryPi : '/blog/categories/#RaspberryPi' }
-    - { Refactoring : '/blog/categories/#Refactoring'}
+    - { Boostcamp : '/blog/categories/#bc' }
+    - { DesignPattern : '/blog/categories/#designpattern'}
+    - { Go: '/blog/categories/#go'}
+    - { Jekyll : '/blog/categories/#jekyll' }
+    - { Jetson : '/blog/categories/#jetson' }
+    - { Python : '/blog/categories/#python' }
+    - { RaspberryPi : '/blog/categories/#raspberryPi' }
+    - { Refactoring : '/blog/categories/#refactoring'}
   Tag: 
     - '/blog/tags/' 
   #About:          
