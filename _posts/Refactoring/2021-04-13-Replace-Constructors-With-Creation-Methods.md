@@ -39,7 +39,7 @@ public:
 어떤 언어에서는 클래스 이름에 상관 없이 생성자의 이름을 마음대로 정할 수 있다. 하지만 Java나 C++같은 언어에서는 이것이 허용되지 않는다. 각각의 생성자는 클래스의 이름과 같아야한다.  
 생성자가 한개가 아니고 여러개라면, 프로그래머가 생성자 코드를 직접 살펴본 후 어떤 생성자를 호출할 지 선택해야 한다.  
 이런 방식은 프로그래머가 해당 클래스를 사용할 때 더 오랜 시간이 걸릴 수 있으며, 위의 예시를 통하여 이를 극복할 수 있다.  
-다만 생성자가 너무 많은 클래스를 발견했다면, 이 리팩터링을 적용하기 전에 먼저 [Extract Class](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-superclass) 또는 [Extract Subclass](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-subclass) 리팩터링을 고려하는 것이 좋다.  
+다만 생성자가 너무 많은 클래스를 발견했다면, 이 리팩터링을 적용하기 전에 먼저 [Extract Class](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-superclass) 또는 [Extract Subclass](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-subclass) 리팩터링을 고려하는 것이 좋다.  
 클래스가 지나치게 많은 일을 하고 있다면, Extract Class 리팩터링이 좋은 선택이고, 클래스가 인스턴스 변수의 일부만 사용하고 있다면 Extract Subclass 리팩터링을 적용할 만 하다.   
 
 
@@ -55,15 +55,15 @@ public:
 
 #### 절차
 
-이 리팩터링을 시작하기 전에, *실질 생성자가 존재하는지 찾아본다. 실질 생성자가 없다면 [Chain Constructors](https://jo631.github.io/refactoring/2021/04/13/Chain-Constructors/) 리팩터링을 적용해 하나 만든다.
+이 리팩터링을 시작하기 전에, *실질 생성자가 존재하는지 찾아본다. 실질 생성자가 없다면 [Chain Constructors](https://ukcastle.github.io/refactoring/2021/04/13/Chain-Constructors/) 리팩터링을 적용해 하나 만든다.
 
 *실질 생성자: 실질적인 생성 기능을 모두 구현하는 생성자로서, 다른 생성자들은 이 실질 생성자에게 작업을 위임하는 역할만 하는 경우를 뜻한다.
 
-1. 여러 생성자 중 하나를 선택하여 그것을 호출하는 클라이언트 코드를 찾는다. 그리고 그 코드에 [Extract Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-method)를 적용해 별도의 메소드(`public static`로 지정)로 뽑아낸다. 이렇게 만든 메서드를 생성 메서드라 하고, [Move Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#move-method)를 적용해 이 생성 메서드를 해당 생성자를 포함하고 있는 클래스로 옮긴다.  
+1. 여러 생성자 중 하나를 선택하여 그것을 호출하는 클라이언트 코드를 찾는다. 그리고 그 코드에 [Extract Method](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-method)를 적용해 별도의 메소드(`public static`로 지정)로 뽑아낸다. 이렇게 만든 메서드를 생성 메서드라 하고, [Move Method](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#move-method)를 적용해 이 생성 메서드를 해당 생성자를 포함하고 있는 클래스로 옮긴다.  
 
 2. 선택한 생성자를 사용하는 곳(즉 동일한 종류의 인스턴스를 사용하는 곳)을 모두 찾아 앞에서 만든 생성 메서드를 호출하도록 **수정**한다.  
 
-3. 만약 선택한 생성자가 다른 생성자를 호출하고 있다면, 생성 메소드에서 선택한 생성자 대신 호출되는 생성자를 사용하도록 고친다. [Inline Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#inline-method) 리팩터링을 적용할 때 처럼 생성자를 인라인화하면 된다.  
+3. 만약 선택한 생성자가 다른 생성자를 호출하고 있다면, 생성 메소드에서 선택한 생성자 대신 호출되는 생성자를 사용하도록 고친다. [Inline Method](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#inline-method) 리팩터링을 적용할 때 처럼 생성자를 인라인화하면 된다.  
 
 4. 생성 메서드로 바꾸고 싶은 다른 모든 생성자에 대해 단계 1~3을 반복한다.  
 

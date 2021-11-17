@@ -14,7 +14,7 @@ tag: [DesignPattern, Refactoring]
 
 #### 동기
 
-바로 [전 포스트](https://jo631.github.io/refactoring/2021/05/19/Inline-Singleton/)에서 싱글턴 패턴은 정말 특정한 상황이 아니면 필요하지 않다고 했다. 하지만 다음의 특정한 상황의 경우 싱글턴 패턴을 고려해보자.  
+바로 [전 포스트](https://ukcastle.github.io/refactoring/2021/05/19/Inline-Singleton/)에서 싱글턴 패턴은 정말 특정한 상황이 아니면 필요하지 않다고 했다. 하지만 다음의 특정한 상황의 경우 싱글턴 패턴을 고려해보자.  
 
 - 시스템 성능에 대한 사용자의 불만이 높다.
 - 프로파일러를 통해 확인한 결과, 객체를 반복적으로 생성하는 것이 시스템 성능에 악영향을 미친다.
@@ -36,7 +36,7 @@ tag: [DesignPattern, Refactoring]
 
 이 리팩터링을 적용하기 전에, 대상이 되는 객체에 상태가 없거나 있더라도 공유가 가능한지 확인해야 한다.
 
-1. 인스턴스를 여러 개 가지는 클래스. 즉, 하나 이상의 클라이언트에 의해 **두번 이상** 생성되는 클래스를 찾는다. 그 클래스에 [Replace Constructor with Creation Methods](https://jo631.github.io/refactoring/2021/04/13/Replace-Constructors-With-Creation-Methods/)을 적용한다. 생성자가 하나뿐인 경우라도 마찬가지다. 생성 메서드의 리턴 타입은 대상 클래스 타입이어야 한다.
+1. 인스턴스를 여러 개 가지는 클래스. 즉, 하나 이상의 클라이언트에 의해 **두번 이상** 생성되는 클래스를 찾는다. 그 클래스에 [Replace Constructor with Creation Methods](https://ukcastle.github.io/refactoring/2021/04/13/Replace-Constructors-With-Creation-Methods/)을 적용한다. 생성자가 하나뿐인 경우라도 마찬가지다. 생성 메서드의 리턴 타입은 대상 클래스 타입이어야 한다.
 
 2. 싱글턴 필드를 만든다. 필드는 **private static** 타입으로, 타입은 대상 클래스 타입으로 선언한다. 가능하다면 대상 클래스의 인스턴스로 싱글턴 필드를 초기화한다.  
 런타임에 클라이언트로부터 받아야 할 **파라미터가 존재한다면** 초기화할 수 없을 것이다. 이럴 경우 필드만 선언하고 초기화는 하지 않는다.   

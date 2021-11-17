@@ -11,7 +11,7 @@ tag: [RaspberryPi, OpenCV]
 
 #### Connect Camera Module
 
-![카메라찍음](https://github.com/jo631/jo631.github.io/blob/main/postimg/%EC%B9%B4%EB%A9%94%EB%9D%BC%EC%B0%8D%EC%9D%8C.jpg?raw=true){: width="50%" heigth="50%"}
+![카메라찍음](https://github.com/ukcastle/ukcastle.github.io/blob/main/postimg/%EC%B9%B4%EB%A9%94%EB%9D%BC%EC%B0%8D%EC%9D%8C.jpg?raw=true){: width="50%" heigth="50%"}
 
 이런식으로 `Camera` 포트에 잘 끼워주면 된다.  
 이제 설정을 해주자  
@@ -21,7 +21,7 @@ tag: [RaspberryPi, OpenCV]
 raspistill -o 이미지이름.jpg
 ```
 잠시동안 디스플레이에 카메라 화면이 표시된 후 설정한 이름으로 저장이 된다.  
-![이미지](https://github.com/jo631/jo631.github.io/blob/main/postimg/%EC%9D%B4%EB%AF%B8%EC%A7%80.jpg?raw=true){: width="50%" heigth="50%"}
+![이미지](https://github.com/ukcastle/ukcastle.github.io/blob/main/postimg/%EC%9D%B4%EB%AF%B8%EC%A7%80.jpg?raw=true){: width="50%" heigth="50%"}
 
 연결이 잘 됐는지만 확인했다. 근데 내 카메라 모듈은... 초점이 좀 멀리잡히는 것 같다.  
 당연하겠지만 오토포커싱 기능이 없네  

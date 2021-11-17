@@ -269,7 +269,7 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
 그 부분에 해당 코드를 적용시켜주면 된다.  
 
-![img](https://github.com/jo631/jo631.github.io/blob/main/_posts/Jetson/_postimg/210523-opencv/cuda.png?raw=true)
+![img](https://github.com/ukcastle/ukcastle.github.io/blob/main/_posts/Jetson/_postimg/210523-opencv/cuda.png?raw=true)
 
 간단한 테스트코드를 돌려봤는데, 기존의 CPU를 사용한 모델 처리는 0.3초가 걸렸는데, CUDA GPGPU 환경에서는 단 0.05초가 걸렸다  
 

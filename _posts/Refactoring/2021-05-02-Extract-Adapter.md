@@ -15,7 +15,7 @@ tag: [DesignPattern, Refactoring]
 #### 동기
 
 소프트웨어를 개발하다 보면 컴포넌트, 라이브러리, API를 동시에 여러 버전으로 지원해야 할 때가 있지만 이런 버전 처리 코드가 굳이 복잡해질 필요는 없다. 그러나 **특정 버전만을 위한 상태 변수, 메서드**를 한 클래스에 오버로딩해 구현한 경우를 자주 볼 수 있다. 이 경우 주석으로 `# 버전 Y로 이동하면 반드시 삭제할것!` 이라고 적혀있지만, 대부분의 프로그래머들이 그 코드를 못 볼 가능성도 있다.  
-이제, 이 리팩토링을 사용해 각 버전을 지원하는 별도 클래스를 만든다고 생각해보자. 클래스 이름에 버전을 명시하는 것도 좋다. 이런 클래스를 [Adapter](https://jo631.github.io/designpattern/2021/05/01/Adapter/)라고 부른다. 어댑터는 **공통 인터페이스**를 구현하고 특정 버전의 코드에 대해 정확히 동작해야 한다. 어댑터를 사용하면 클라이언트 코드에서 버전을 변경하기가 매우 쉬워진다.  
+이제, 이 리팩토링을 사용해 각 버전을 지원하는 별도 클래스를 만든다고 생각해보자. 클래스 이름에 버전을 명시하는 것도 좋다. 이런 클래스를 [Adapter](https://ukcastle.github.io/designpattern/2021/05/01/Adapter/)라고 부른다. 어댑터는 **공통 인터페이스**를 구현하고 특정 버전의 코드에 대해 정확히 동작해야 한다. 어댑터를 사용하면 클라이언트 코드에서 버전을 변경하기가 매우 쉬워진다.  
 
 ##### 장점
 
@@ -32,16 +32,16 @@ tag: [DesignPattern, Refactoring]
 
 #### 절차
 
-이 리팩토링의 절차는 상황마다 다르다. 어떤 외부 코드의 여러 버전을 지원하기 위해 조건 로직을 사용하고 있다면 [Replace Conditional with Polymorphism](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#replace-conditional-with-polymorphism)을 적용해 각 버전을 위한 어댑터를 만들 수 있다. 만약 어댑터 하나가 라이브러리의 **여러 버전을 지원하기 위해 버전 종속적인 변수나 메서드를 여러 개 포함**하고 있다면, 다른 방법을 사용해 어댑터를 여러 개 뽑아놔야 한다. 그 방법은 다음과 같다.  
+이 리팩토링의 절차는 상황마다 다르다. 어떤 외부 코드의 여러 버전을 지원하기 위해 조건 로직을 사용하고 있다면 [Replace Conditional with Polymorphism](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#replace-conditional-with-polymorphism)을 적용해 각 버전을 위한 어댑터를 만들 수 있다. 만약 어댑터 하나가 라이브러리의 **여러 버전을 지원하기 위해 버전 종속적인 변수나 메서드를 여러 개 포함**하고 있다면, 다른 방법을 사용해 어댑터를 여러 개 뽑아놔야 한다. 그 방법은 다음과 같다.  
 
 1. 여러 버전의 코드를 어댑팅하기 위해 **과중한 책임을 떠맡고 있는 어댑터 클래스**를 찾는다.  
 
-2. 과중한 책임을 맡고 있는 어댑터 클래스에 [Extract Subclass](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-subclass) 또는 [Extract Class](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-class)를 적용해 특정 버전에 종속적인 부분을 각각 별도의 클래스로 뽑아낸다. 특정 버전을 지원하기 위해 **배타적으로 사용되는 인스턴스 변수와 메서드를 새로 만든 어댑터로 모두 복사하거나 옮긴다.**  
+2. 과중한 책임을 맡고 있는 어댑터 클래스에 [Extract Subclass](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-subclass) 또는 [Extract Class](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-class)를 적용해 특정 버전에 종속적인 부분을 각각 별도의 클래스로 뽑아낸다. 특정 버전을 지원하기 위해 **배타적으로 사용되는 인스턴스 변수와 메서드를 새로 만든 어댑터로 모두 복사하거나 옮긴다.**  
 이 과정에서 기존 어댑터 클래스의 `private` 필드나 메서드 중 일부를 `protected`로 수정해야할 수도 있다.  
 
 3. 기존의 어댑터 클래스에 버전 종속적인 코드가 모두 사라질 때 까지 단계 2를 반복한다.  
 
-4. 새로 만든 어댑터 클래스들 사이에 존재하는 **중복 코드**는 [Pull Up Method](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#pull-up-method) 또는 [Form Template Method](https://jo631.github.io/refactoring/2021/04/16/Form-Template-Method/)를 사용해 제거한다.  
+4. 새로 만든 어댑터 클래스들 사이에 존재하는 **중복 코드**는 [Pull Up Method](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#pull-up-method) 또는 [Form Template Method](https://ukcastle.github.io/refactoring/2021/04/16/Form-Template-Method/)를 사용해 제거한다.  
 
 <br>
 
@@ -215,7 +215,7 @@ class QuerySD52 extends Query{
 
 ```
 
-만들고 보니, doQuery()의 `executeQuery()`라는 중복되는 함수가 있다. 예제라 한 줄 이지만, 이게 과연 100줄이라면? 당연히 리팩토링을 해야된다. [Introduce Polymorphic Creation with Factory Method](https://jo631.github.io/refactoring/2021/04/13/Introduce-Polymorphic-Creation-with-Factory-Method/)와 [Form Template Method](https://jo631.github.io/refactoring/2021/04/16/Form-Template-Method/)를 통해 다음과 같이 `doQuery()`를 수퍼클래스로 옮기자.  
+만들고 보니, doQuery()의 `executeQuery()`라는 중복되는 함수가 있다. 예제라 한 줄 이지만, 이게 과연 100줄이라면? 당연히 리팩토링을 해야된다. [Introduce Polymorphic Creation with Factory Method](https://ukcastle.github.io/refactoring/2021/04/13/Introduce-Polymorphic-Creation-with-Factory-Method/)와 [Form Template Method](https://ukcastle.github.io/refactoring/2021/04/16/Form-Template-Method/)를 통해 다음과 같이 `doQuery()`를 수퍼클래스로 옮기자.  
 
 ```java
 public abstract class Query{

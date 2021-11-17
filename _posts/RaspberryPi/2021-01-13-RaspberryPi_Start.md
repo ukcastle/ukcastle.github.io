@@ -49,10 +49,10 @@ network={
 
 다음 재부팅을 하고 와이파이가 정상적으로 연결이 되었는지 확인한다. 
 가장 좋은 방법은 우측 위에 와이파이 표시가 있는지 확인하는 것이고...  
-![이미지](https://github.com/jo631/jo631.github.io/blob/main/postimg/%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B4.jpg?raw=true)  
+![이미지](https://github.com/ukcastle/ukcastle.github.io/blob/main/postimg/%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B4.jpg?raw=true)  
  터미널에 `ping 8.8.8.8`을 입력해도 된다.  
 또는 터미널에 `iwconfig`를 입력해도 된다.
-![이미지](https://github.com/jo631/jo631.github.io/blob/main/postimg/iwconfig.jpg?raw=true)  
+![이미지](https://github.com/ukcastle/ukcastle.github.io/blob/main/postimg/iwconfig.jpg?raw=true)  
 연결이 정상적으로 됐다면, **평문**으로 쓰인 비밀번호를 바꿔주자. (귀찮으면 안해도 된다)   
 터미널에 `wpa_passphrase 와이파이이름 와이파이비밀번호` 를 입력한다.
 그럼 익숙한 형식이 보인다.

@@ -3,7 +3,7 @@ title: 개발일지
 tagline: "CastleJo's Blog"
 description: 'CastleJo의 개발일지'
 baseurl: ""
-url: http://jo631.github.io
+url: http://ukcastle.github.io
 logo: '/public/logo.png'
 
 # Site configurations
@@ -28,7 +28,7 @@ author:
   description: Korean Polytechnic University<br/>사진찍는 취미가 있는<br/>(Leica x typ 113 오너) <br/>개발자 
   gravatar: 2cab55d41d9385e34db30faa9d180db1 # md5 hash of your email address
   contact:
-    github:    https://github.com/jo631
+    github:    https://github.com/ukcastle
     instagram: https://www.instagram.com/castle_uk_jo/
     email:     'mailto: josw631@gmail.com'
 
@@ -51,7 +51,7 @@ nav:
   #About:          
   #  - '/about/'
   Github Repository: 
-    - 'http://github.com/jo631/jo631.github.io'
+    - 'http://github.com/ukcastle/ukcastle.github.io'
 
 # Where are tags and categories displayed
 tag_page: '/blog/tags/'

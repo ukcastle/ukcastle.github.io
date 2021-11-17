@@ -15,7 +15,7 @@ tag: [Jekyll]
 오른쪽에 신기한게 생겼다.  
 
 ------
-![move](https://github.com/jo631/jo631.github.io/blob/dev/postimg/move.gif?raw=true)
+![move](https://github.com/ukcastle/ukcastle.github.io/blob/dev/postimg/move.gif?raw=true)
 
 ------
 scroll spy라고 하던데 이름 적당한 것 같다.
@@ -31,7 +31,7 @@ scroll spy라고 하던데 이름 적당한 것 같다.
 자신의 계정과 저장소 이름을 입력한 뒤 스크립트 코드를 복붙해서 사용하면 된다
 
 ------
-![comment](https://github.com/jo631/jo631.github.io/blob/dev/postimg/comment.gif?raw=true)  
+![comment](https://github.com/ukcastle/ukcastle.github.io/blob/dev/postimg/comment.gif?raw=true)  
 
 ------
 내 템플릿같은 경우는 `layouts/post.html`에 넣으면 됐다.  
@@ -39,7 +39,7 @@ scroll spy라고 하던데 이름 적당한 것 같다.
 
 #### 좋아요 기능 추가
 ------
-![like](https://github.com/jo631/jo631.github.io/blob/dev/postimg/like.gif?raw=true)
+![like](https://github.com/ukcastle/ukcastle.github.io/blob/dev/postimg/like.gif?raw=true)
 
 ------
 직접 구현해보려했는데, 한 가지 간과한점이 있다.  
@@ -48,7 +48,7 @@ scroll spy라고 하던데 이름 적당한 것 같다.
 
 
 ------
-![likebtn](https://github.com/jo631/jo631.github.io/blob/dev/postimg/LIKEBTN.jpg?raw=true)
+![likebtn](https://github.com/ukcastle/ukcastle.github.io/blob/dev/postimg/LIKEBTN.jpg?raw=true)
 
 ------  
 

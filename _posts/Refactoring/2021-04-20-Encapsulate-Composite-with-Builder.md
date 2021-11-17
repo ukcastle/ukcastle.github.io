@@ -7,7 +7,7 @@ tag: [DesignPattern, Refactoring]
 
 #### 개요
 
->[Composite](https://jo631.github.io/designpattern/2021/04/19/Composite/)구조를 생성하는 과정이 반복적으로 수행되고 복잡하며 에러 발생 가능성도 많은 상태라면,
+>[Composite](https://ukcastle.github.io/designpattern/2021/04/19/Composite/)구조를 생성하는 과정이 반복적으로 수행되고 복잡하며 에러 발생 가능성도 많은 상태라면,
 그 세부사항을 처리하는 별도의 Builder를 제공하여 Composite 구조를 쉽게 생성할 수 있도록 한다.  
 
 #### 동기 

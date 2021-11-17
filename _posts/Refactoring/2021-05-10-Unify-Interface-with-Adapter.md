@@ -8,7 +8,7 @@ tag: [DesignPattern, Refactoring]
 #### 개요
 
 >클라이언트가 두 개의 유사한 클래스를 사용하고 있는데 그 중 한 인터페이스가 다른 하나보다 더 좋아보이면
-[어댑터](https://jo631.github.io/designpattern/2021/05/01/Adapter/)를 도입해 인터페이스를 통합한다.
+[어댑터](https://ukcastle.github.io/designpattern/2021/05/01/Adapter/)를 도입해 인터페이스를 통합한다.
 
 <br>
 
@@ -20,9 +20,9 @@ Adapter 패턴을 사용하는 경우는 다음과 같다.
 - 두 클래스가 공통 인터페이스를 가지면, 클라이언트 **코드가 더 간단하고 명료**해질 수 있는 경우
 - 외부 라이브러리라서 인터페이스를 바꾸고 싶어도 **쉽게 바꿀 수 없는 경우**, 또는 인터페이스가 프레임워크의 일부라서 **이미 많은 클라이언트에서 사용**되고 있는 경우, 또는 **소스 코드를 갖고 있지 않은 경우**
 
-위와 같이, 비슷한 일을 하는 클래스지만 공통 인터페이스가 없어 각각을 별도의 방식으로 사용해야 하는 경우를 [인터페이스가 서로 다른 대체 클래스](https://jo631.github.io/refactoring/2021/04/12/RF-Ch4/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EA%B0%80-%EC%84%9C%EB%A1%9C-%EB%8B%A4%EB%A5%B8-%EB%8C%80%EC%B2%B4-%ED%81%B4%EB%9E%98%EC%8A%A4)의 냄새가 난다고 표현한다.  
+위와 같이, 비슷한 일을 하는 클래스지만 공통 인터페이스가 없어 각각을 별도의 방식으로 사용해야 하는 경우를 [인터페이스가 서로 다른 대체 클래스](https://ukcastle.github.io/refactoring/2021/04/12/RF-Ch4/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EA%B0%80-%EC%84%9C%EB%A1%9C-%EB%8B%A4%EB%A5%B8-%EB%8C%80%EC%B2%B4-%ED%81%B4%EB%9E%98%EC%8A%A4)의 냄새가 난다고 표현한다.  
 이 냄새를 제거하는 가장 간단한 방법은 메서드의 이름을 바꾸거나 메서드 자체를 옮겨 인터페이스를 동일하게 만드는 것이다. 하지만 위의 설명과 같은 이유로 그렇게 할 수 없다면, Adapter 패턴의 도입을 고려해야 한다.  
-Adapter 패턴으로 리팩토링하면 코드가 **일반화**되는 경우가 있다. 그리고 이 리팩터링은 **코드 중복을 제거하기 위한 다른 리팩터링의 토대**가 된다. Adapter패턴을 도입하여 대체 관계에 있는 클래스의 인터페이스를 하나로 통합하면, 클라이언트가 대체 클래스를 사용하는 방식 또한 일반화된다. 그 이후 [Form Templater Method](https://jo631.github.io/refactoring/2021/04/16/Form-Template-Method/)를 적용하면 클라이언트 코드의 **중복된 처리 로직을 제거**할 수 있다. 따라서 클라이언트 코드가 더 간결해진다.  
+Adapter 패턴으로 리팩토링하면 코드가 **일반화**되는 경우가 있다. 그리고 이 리팩터링은 **코드 중복을 제거하기 위한 다른 리팩터링의 토대**가 된다. Adapter패턴을 도입하여 대체 관계에 있는 클래스의 인터페이스를 하나로 통합하면, 클라이언트가 대체 클래스를 사용하는 방식 또한 일반화된다. 그 이후 [Form Templater Method](https://ukcastle.github.io/refactoring/2021/04/16/Form-Template-Method/)를 적용하면 클라이언트 코드의 **중복된 처리 로직을 제거**할 수 있다. 따라서 클라이언트 코드가 더 간결해진다.  
 
 ##### 장점
 
@@ -38,10 +38,10 @@ Adapter 패턴으로 리팩토링하면 코드가 **일반화**되는 경우가 
 
 #### 절차
 
-1. 대체 클래스 중 **가장 일반적이고 적합한 인터페이스를 가진 클래스**에 [Extract Method](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method)를 적용시켜 공통 인터페이스를 만든다. 그리고 뽑아낸 메서드의 파라미터를 조사해, 대체 클래스 타입을 쓰는 것이 있으면 새로 정의한 공통 인터페이스 타입을 사용하도록 변경한다.  
+1. 대체 클래스 중 **가장 일반적이고 적합한 인터페이스를 가진 클래스**에 [Extract Method](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method)를 적용시켜 공통 인터페이스를 만든다. 그리고 뽑아낸 메서드의 파라미터를 조사해, 대체 클래스 타입을 쓰는 것이 있으면 새로 정의한 공통 인터페이스 타입을 사용하도록 변경한다.  
 이 후 단계에서는, 클라이언트가 어댑팅의 대상이 되는 Adapter 클래스를 사용할 때 이 단계에서 만든 공동 인터페이스를 통하도록 수정할 것이다.  
 
-2. Adapter 클래스를 **사용하는 클라이언트 클래스**를 찾는다. 그리고 [Extract Class](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-class)를 적용해, 원시 어댑터를 만든다. **원시 어댑터**란, **어댑티 객체를 저장하는 필드를 선언하고 그에 대한 getter/setter를 제공하는 클래스**를 말한다.
+2. Adapter 클래스를 **사용하는 클라이언트 클래스**를 찾는다. 그리고 [Extract Class](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-class)를 적용해, 원시 어댑터를 만든다. **원시 어댑터**란, **어댑티 객체를 저장하는 필드를 선언하고 그에 대한 getter/setter를 제공하는 클래스**를 말한다.
 
 3. 클라이언트 코드 중 어댑티 클래스 타입의 **필드 또는 지역 변수, 메서드 파라미터가 있다면**, 모두 **원시 어댑터 타입으로 치환**한다.
 
@@ -61,7 +61,7 @@ Adapter 패턴으로 리팩토링하면 코드가 **일반화**되는 경우가 
     ```
     이렇게 바꾼다.
 
-5. 단계 4에서 뽑아낸 메서드 중 하나에 [Move Method](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#move-method)를 적용해 단계 2에서 만든 원시 어댑터 클래스로 옮긴다. 즉, **클라이언트가 어댑티 클래스의 메서드를 호출할 때 항상 어댑터를 통하도록**만드는 것이다.  
+5. 단계 4에서 뽑아낸 메서드 중 하나에 [Move Method](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#move-method)를 적용해 단계 2에서 만든 원시 어댑터 클래스로 옮긴다. 즉, **클라이언트가 어댑티 클래스의 메서드를 호출할 때 항상 어댑터를 통하도록**만드는 것이다.  
 이 때 주의할 점이 있는데, 단계 1에서 만든 공통 인터페이스를 살펴보면 지금 옮기려는 메서드에 대응하는 메서드가 하나씩 있을텐데, 메서드를 옮긴 후 시그니처가 대응 메서드의 시그니처와 **최대한 비슷**해야 한다. 그리고 만약 옮겨진 메서드의 내부 코드에서 클라이언트로부터 얻어야 하는 **추가적인 정보**가 있다고 해도, **파라미터를 추가하는 것은 피해야 한다.** 메서드의 시그니처가 이에 대응하는 공통 인터페이스의 메서드와 달라질 것이기 때문이다. 가능하면 메서드의 시그니처를 바꾸지 않고 해결할 수 있는 방법을 찾아야 한다. 어댑터 클래스 생성자의 파라미터로 전달하거나, 어댑터에 객체를 넘겨 런타임에 그 객체를 통해 값을 얻을 수 있도록 할 수 있다. 그러나 꼭 메서드의 파라미터로 넘길 수 밖에 없다면, 공통 인터페이스에 있는 대응 메서드의 시그니처를 적절히 수정해 두 메서드를 일치시켜야 한다.
 
 6. 어댑터 클래스가 공통 인터페이스를 구현하도록 수정한다. 이 떄, 메서드의 파라미터 중 어댑터 타입인 것이 있다면 모두 공통 인터페이스 타입으로 변경한다.
@@ -72,7 +72,7 @@ Adapter 패턴으로 리팩토링하면 코드가 **일반화**되는 경우가 
 
 #### 구현
 
-[원본](https://jo631.github.io/refactoring/2021/04/13/Introduce-Polymorphic-Creation-with-Factory-Method/#%EA%B0%9C%EC%9A%94)의 예제이다.  
+[원본](https://ukcastle.github.io/refactoring/2021/04/13/Introduce-Polymorphic-Creation-with-Factory-Method/#%EA%B0%9C%EC%9A%94)의 예제이다.  
 
 ```java
 interface IBuilderAction{
@@ -152,7 +152,7 @@ class XMLBuilder extends AbstractBuilder{
 
 ##### 절차 1
 
-첫 번째로 할 일은 **공통 인터페이스를 만드는 것**이다. `TagNode`의 인터페이스가 더 좋아보이므로 이를 기준으로 인터페이스를 만들 것이다. `TagNode`에는 메서드가 10개 있고, 그 중 public 메서드는 5개이다. 공통 인터페이스에는 그 중 3개만 포함시키면 된다. `TagNode`에 [Extract Interface](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-interface)를 적용해보자.
+첫 번째로 할 일은 **공통 인터페이스를 만드는 것**이다. `TagNode`의 인터페이스가 더 좋아보이므로 이를 기준으로 인터페이스를 만들 것이다. `TagNode`에는 메서드가 10개 있고, 그 중 public 메서드는 5개이다. 공통 인터페이스에는 그 중 3개만 포함시키면 된다. `TagNode`에 [Extract Interface](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-interface)를 적용해보자.
 
 ```java
 public interface XMLNode{
@@ -522,7 +522,7 @@ class DOMBuilder extends AbstractBuilder{
 }
 ```
 
-위 과정을 거쳐 `DOMBuilder`가 사용하는 `Element` 인터페이스를 어댑팅하면 `XMLBuilder`와 `DOMBuilder`의 코드가 매우 비슷해진다. 따라서 [Form Template Method](https://jo631.github.io/refactoring/2021/04/16/Form-Template-Method/)나 [Introduce Polymorphic Creation with Factory Method](https://jo631.github.io/refactoring/2021/04/13/Introduce-Polymorphic-Creation-with-Factory-Method/)를 통해 공통 부분을 수퍼클래스인 `AbstractBuilder`로 옮길 수 있다.
+위 과정을 거쳐 `DOMBuilder`가 사용하는 `Element` 인터페이스를 어댑팅하면 `XMLBuilder`와 `DOMBuilder`의 코드가 매우 비슷해진다. 따라서 [Form Template Method](https://ukcastle.github.io/refactoring/2021/04/16/Form-Template-Method/)나 [Introduce Polymorphic Creation with Factory Method](https://ukcastle.github.io/refactoring/2021/04/13/Introduce-Polymorphic-Creation-with-Factory-Method/)를 통해 공통 부분을 수퍼클래스인 `AbstractBuilder`로 옮길 수 있다.
 
 ```java
 interface XMLNode{

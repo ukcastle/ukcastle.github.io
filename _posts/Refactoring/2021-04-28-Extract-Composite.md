@@ -7,14 +7,14 @@ tag: [DesignPattern, Refactoring]
 
 #### 개요
 
->한 상속 구조 내의 서브클래스가 동일한 [Composite](https://jo631.github.io/designpattern/2021/04/19/Composite/)기능을 **각자** 구현하고 있다면
+>한 상속 구조 내의 서브클래스가 동일한 [Composite](https://ukcastle.github.io/designpattern/2021/04/19/Composite/)기능을 **각자** 구현하고 있다면
 컴포짓 기능을 수퍼클래스로 옮겨 구현한다.  
 
 <br>
 
 #### 동기
 
-해당 리팩터링은 [Extract Superclass](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-superclass)와 유사하다. 다른점은 Composite 기능에 대한 것을 다룬다는 점이다.  
+해당 리팩터링은 [Extract Superclass](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-superclass)와 유사하다. 다른점은 Composite 기능에 대한 것을 다룬다는 점이다.  
 
 어떤 상속 구조 내의 서브클래스들이 자신의 자식 객체를 컬렉션에 저장하고 그 **자식 객체들의 기능에 접근하기 위한 메서드를 각자 구현**하는 것은 자주 볼 수 있다. 이 때 만약 자식 객체의 타입이 부모 객체와 **동일한 상속 구조 내의 타입**이라면, Composite 패턴으로 리팩터링해 많은 코드 중복을 제거할 수 있다.  
 
@@ -38,9 +38,9 @@ tag: [DesignPattern, Refactoring]
 2. 자식 객체 컨테이너(상속 구조에서 **중복된 자식 객체 처리 로직을 포함하는 클래스**)를 앞서 만든 **컴포짓 클래스의 서브 클래스**로 만든다.  
 
 3. 자식 객체 컨테이너 사이에 **중복된 자식 객체 처리 메서드를** 하나 찾아낸다.이 때 두가지 경우가 있는데, 하나는 **메서드 몸체 구현이 완전히 동일한 경우**이고 **다른 하나는 메서드 몸체 구현에 공통되는 부분과 다른 부분이 혼재하는 경우**이다. 전자의 경우 **완전 중복 메서드** 라고 부르고 후자의 경우를 **부분 중복 메서드**라고 한다.  
-찾아낸 중복 메서드의 이름이 통일되어있지 않다면 [Rename Method](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#rename-method)를 적용한다. 
-- **완전 중복 메서드**의 경우 그 메서드에서 사용하는 자식 객체 컬렉션 필드를 [Pull Up Field](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#pull-up-method) 리팩터링을 적용해 **Composite 클래스로 옮긴다.** 이 때 그 필드는 **모든 자식 객체 컨테이너에게 의미 있는 일반적인 이름**으로 바꾼다. 이 후 메서드도 동일한 방법으로 Composite 클래스로 옮긴다. 이 떄 그 메서드가 클래스의 생성자 코드에 **의존**하는 부분이 있다면, 그 **생성자 코드도 Composite 클래스의 생성자로** 올려야 한다. 
-- 부분 중복 메서드의 경우 일단 [Substitute Algorithm](https://jo631.github.io/refactoring/2021/04/28/substitute-Algorithm/)을 통해 **메서드 구현을 모두 동일하게 만들 수 있는지** 살핀다. 만약 그럴 수 있다면 리팩터링을 통해 완전 중복 메서드로 만든다. 그렇지 않다면 [Extract Method](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method)를 통해 **공통의 부분을 별도의 메서드를 뽑아낸 뒤 Composite 클래스로 옮긴다.** 만약 메서드의 내부 구현이 동일한 단계를 따르지만 각 단계가 조금씩 다르다면 [Form Template Method](https://jo631.github.io/refactoring/2021/04/16/Form-Template-Method/)를 고려해본다.
+찾아낸 중복 메서드의 이름이 통일되어있지 않다면 [Rename Method](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#rename-method)를 적용한다. 
+- **완전 중복 메서드**의 경우 그 메서드에서 사용하는 자식 객체 컬렉션 필드를 [Pull Up Field](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#pull-up-method) 리팩터링을 적용해 **Composite 클래스로 옮긴다.** 이 때 그 필드는 **모든 자식 객체 컨테이너에게 의미 있는 일반적인 이름**으로 바꾼다. 이 후 메서드도 동일한 방법으로 Composite 클래스로 옮긴다. 이 떄 그 메서드가 클래스의 생성자 코드에 **의존**하는 부분이 있다면, 그 **생성자 코드도 Composite 클래스의 생성자로** 올려야 한다. 
+- 부분 중복 메서드의 경우 일단 [Substitute Algorithm](https://ukcastle.github.io/refactoring/2021/04/28/substitute-Algorithm/)을 통해 **메서드 구현을 모두 동일하게 만들 수 있는지** 살핀다. 만약 그럴 수 있다면 리팩터링을 통해 완전 중복 메서드로 만든다. 그렇지 않다면 [Extract Method](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method)를 통해 **공통의 부분을 별도의 메서드를 뽑아낸 뒤 Composite 클래스로 옮긴다.** 만약 메서드의 내부 구현이 동일한 단계를 따르지만 각 단계가 조금씩 다르다면 [Form Template Method](https://ukcastle.github.io/refactoring/2021/04/16/Form-Template-Method/)를 고려해본다.
 
 4. 다른 중복된 자식 객체 처리 메서드를 찾아 각각 단계 3을 적용한다.  
 
@@ -56,8 +56,8 @@ tag: [DesignPattern, Refactoring]
 <HTML>
     <BODY>
         Hello, World!
-        <A HREF="https://jo631.github.io/">
-            <IMG SRC="https://jo631.github.io/public/img/moon.jpg">
+        <A HREF="https://ukcastle.github.io/">
+            <IMG SRC="https://ukcastle.github.io/public/img/moon.jpg">
         </A>
     </BODY>
 </HTML>

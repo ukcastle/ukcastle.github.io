@@ -6,7 +6,7 @@ tag: [RaspberryPi, OpenCV, Keras]
 ---
 
 실제로 라즈베리파이의 카메라로 영상을 찍으며 얼굴 인식을 실험해봤다.   
-[링크](https://github.com/jo631/frames-client)에 현재까지의 진행상황을 저장하고있다.  
+[링크](https://github.com/ukcastle/frames-client)에 현재까지의 진행상황을 저장하고있다.  
 현재 진행상황으로는 비디오의 프레임당 모델을 적용시켜 실행했는데, 라즈베리파이의 CPU로는 도저히 따라갈 수 없는 성능이다. 
 
 일단 여태까지 만든 파이썬 코드들을 파헤쳐보려고 한다.  

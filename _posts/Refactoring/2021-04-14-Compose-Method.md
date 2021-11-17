@@ -48,8 +48,8 @@ void add(Object* element){
 **작고 단순하여 몇초만에 이해할 수 있는** 메소드 이다.  
 여러 메소드를 동등한 수준에서 나눈다.  
 
-이 리팩터링은 여러번의 [Extract Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-method)를 포함한다. 이 때 가장 어려운 것은 어떤 부분을 메소드 내부에 남기고, 어떤 부분을 다른 메소드로 뽑아낼 것 인지 결정하는 것이다.  
-너무 많은 코드를 뽑아내려 할 때 적절하게 작명하기 어려울것이다. 이런 경우 [Inline Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#inline-method)를 적용하고 다시 분리할 방법을 찾아야 한다.  
+이 리팩터링은 여러번의 [Extract Method](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-method)를 포함한다. 이 때 가장 어려운 것은 어떤 부분을 메소드 내부에 남기고, 어떤 부분을 다른 메소드로 뽑아낼 것 인지 결정하는 것이다.  
+너무 많은 코드를 뽑아내려 할 때 적절하게 작명하기 어려울것이다. 이런 경우 [Inline Method](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#inline-method)를 적용하고 다시 분리할 방법을 찾아야 한다.  
 
 만약 메소드가 너무 많아져 성능이 떨어진다고 생각되는가?  
 여태 경험상 큰 문제는 없었고, 이는 BigO 방식으로 생각해봐도 큰 문제가 없다.  
@@ -64,7 +64,7 @@ void add(Object* element){
 #### 단점
 
 - 작은 메소드가 지나치게 많이 생길 수 있다.  
-    > 이런 경우 [Extract Class](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-class)를 적용할 수 있다.  
+    > 이런 경우 [Extract Class](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-class)를 적용할 수 있다.  
 - 로직이 여러 곳에 흩어지기 때문에 디버깅이 어려울 수 있다.  
 
 #### 절차  

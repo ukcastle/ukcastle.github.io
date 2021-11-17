@@ -13,11 +13,11 @@ tag: [DesignPattern, Refactoring]
 #### 동기
 
 이 리팩토링의 동기는 한 클래스가 조건문으로 인해 복잡하고, 많은 역할을 수행하고 있을 때 이용된다.  
-많은 알고리즘에서 조건문으로 인해 매우 복잡해지고 길어진 함수를 볼 수 있다. 이를 해결하기 위해 [Composed Method](https://jo631.github.io/refactoring/2021/04/14/Compose-Method/)같은 방식을 이용하면, 한 클래스 안에 너무 많은 메소드가 생긴다. 이것을 해결하기 위해 서브클래스를 만들거나, 새로운 클래스로 옮길 수 있는데, 서브클래스로 옮기면 **상속**을 이용하는 방식이고 새로운 클래스로 옮기면 **객체 조합**을 이용하는 것이다.  
-이 리팩토링은 **객체 조합**을 이용하는 방식이고, [Replace Conditional with Polymorphism](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-conditional-with-polymorphism)은 상속을 이용하는 방법이다.  
+많은 알고리즘에서 조건문으로 인해 매우 복잡해지고 길어진 함수를 볼 수 있다. 이를 해결하기 위해 [Composed Method](https://ukcastle.github.io/refactoring/2021/04/14/Compose-Method/)같은 방식을 이용하면, 한 클래스 안에 너무 많은 메소드가 생긴다. 이것을 해결하기 위해 서브클래스를 만들거나, 새로운 클래스로 옮길 수 있는데, 서브클래스로 옮기면 **상속**을 이용하는 방식이고 새로운 클래스로 옮기면 **객체 조합**을 이용하는 것이다.  
+이 리팩토링은 **객체 조합**을 이용하는 방식이고, [Replace Conditional with Polymorphism](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-conditional-with-polymorphism)은 상속을 이용하는 방법이다.  
 이 리팩터링의 전제 조건은 알고리즘을 구현한 호스트 클래스가 서브 클래스를 가지고 있어야 한다는 것이다.  서브 클래스가 이미 존재하여 알고리즘들을 각각 하나의 서브클래스에 대응시키기 쉽다면, 이 리팩토링이 제격이다.  
-그러나 리팩토링에 앞서 서브클래스를 먼저 만들어야 하는 경우라면, 객체 조합을 이용한 [Strategy](https://jo631.github.io/designpattern/2021/04/14/Strategy/)가 더 쉬운 길이 아닐지 생각해봐야 한다.  
-알고리즘 내의 조건문이 타입 코드를 사용하는 경우엔 타입 코드의 값 하나마다 호스트 클래스의 서브 클래스를 하나씩 만드는 [Replace Type Code with Subclasses](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-type-code-with-subclasses) 방식을 이용하면 쉽다. 타입 코드가 없는 경우 Strategy 패턴으로 리팩터링하는 것이 좋다.  
+그러나 리팩토링에 앞서 서브클래스를 먼저 만들어야 하는 경우라면, 객체 조합을 이용한 [Strategy](https://ukcastle.github.io/designpattern/2021/04/14/Strategy/)가 더 쉬운 길이 아닐지 생각해봐야 한다.  
+알고리즘 내의 조건문이 타입 코드를 사용하는 경우엔 타입 코드의 값 하나마다 호스트 클래스의 서브 클래스를 하나씩 만드는 [Replace Type Code with Subclasses](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-type-code-with-subclasses) 방식을 이용하면 쉽다. 타입 코드가 없는 경우 Strategy 패턴으로 리팩터링하는 것이 좋다.  
 마지막으로 클라이언트에서 런타임에 한 알고리즘을 다른 알고리즘으로 교체할 필요가 있다면, 상속을 이용한 방법은 피하는 것이 좋다. 이것은 한 Strategy 인스턴스를 다른 인스턴스를 바꾸는 것이 아니라 클라이언트가 사용하는 객체의 타입을 바꾸는 것이 되기 때문이다.  
 
 Strategy 패턴을 **목표로(to)** 리팩터링 할것인지, **향해서(toward)** 리팩터링 할 것인지 결정하려면, 각 Strategy 내의 로직에서 실행에 필요한 데이터에 어떻게 접근하도록 할지 고려해야 한다.  
@@ -25,7 +25,7 @@ Strategy 패턴을 **목표로(to)** 리팩터링 할것인지, **향해서(towa
 - 첫번째로는 호스트 클래스의 **인스턴스**를 Strategy에 **직접** 넘겨서 호스트 클래스의 메서드 호출을 통해 필요한 데이터를 얻게하는 것이다. 이때 호스트 클래스를 **Context**라고 부른다.  
 - 두번째로는 필요한 데이터를 파라미터로 Strategy에 넘기는 방법이다.
 
-Strategy 패턴을 사용한 설계를 구현할 때 Context 클래스가 Strategy 클래스 객체를 어떻게 얻게 할 것인지 고민이 될 것이다. 객체의 조합이 별로 많이 않다면, Strategy 객체를 생성하고 이를 Context에 넘겨주는 과정을 클라이언트가 신경쓰지 않게 하는것이 좋다. 그렇게 하는데는 [Encapsulate Classes with Factory](https://jo631.github.io/refactoring/2021/04/13/Encapsulate-Classes-with-Factory/) 방식이 도움이 된다.  
+Strategy 패턴을 사용한 설계를 구현할 때 Context 클래스가 Strategy 클래스 객체를 어떻게 얻게 할 것인지 고민이 될 것이다. 객체의 조합이 별로 많이 않다면, Strategy 객체를 생성하고 이를 Context에 넘겨주는 과정을 클라이언트가 신경쓰지 않게 하는것이 좋다. 그렇게 하는데는 [Encapsulate Classes with Factory](https://ukcastle.github.io/refactoring/2021/04/13/Encapsulate-Classes-with-Factory/) 방식이 도움이 된다.  
 
 
 #### 장점
@@ -48,7 +48,7 @@ Strategy 패턴을 사용한 설계를 구현할 때 Context 클래스가 Strate
 
 1. Strategy로 쓸 클래스를 하나 만든다. 클래스의 이름은 수행하는 작업에 맞게 붙인다. 예를들어 `함수이름+Strategy()`와 같은 방식으로.. 
 <br> 
-2. [Move Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#move-method) 리팩터링으로 계산 메소드를 Strategy 클래스로 옮긴다.  
+2. [Move Method](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#move-method) 리팩터링으로 계산 메소드를 Strategy 클래스로 옮긴다.  
 함수를 옮겼으면, **2가지 상황**이 발생한다.  
     1. Context 클래스에서 쓰던 변수들을 같이 가져오지 않아 에러가 발생하고,  
     2. Context 클래스에서는 더이상 안쓰이는 함수들이 존재한다.  
@@ -61,9 +61,9 @@ Strategy 패턴을 사용한 설계를 구현할 때 Context 클래스가 Strate
 
     다음 2번을 처리하는데, **Context에서 더이상 쓰이지 않는 함수들을 Strategy 클래스로 이동**시킨다.
 <br>
-3. Context 클래스의 코드 중 Strategy 객체를 생성하고 필드에 대입하는 부분에 [Extract Parameter](https://jo631.github.io/refactoring/2021/04/16/Extract-Parameter/)을 적용하여 클라이언트가 **Context에 Strategy를 넘겨주는 모양새**가 되도록 한다.  
+3. Context 클래스의 코드 중 Strategy 객체를 생성하고 필드에 대입하는 부분에 [Extract Parameter](https://ukcastle.github.io/refactoring/2021/04/16/Extract-Parameter/)을 적용하여 클라이언트가 **Context에 Strategy를 넘겨주는 모양새**가 되도록 한다.  
 <br>
-4. Strategy의 계산 메소드에 [Replace Conditional with Polymorphism](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-conditional-with-polymorphism)을 적용한다. 이 때 [Replace Type Code with Subclasses](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-type-code-with-subclasses)를 사용할 것인지, 아니면  [Replace Type Code with State/strategy](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-type-code-with-statestrategy)를 사용할 것이지 결정해야 한다. 어지간해선 **전자**를 선택하는 것이 좋다. 타입 코드가 명확하게 존재하지 않더라도 전자를 적용할 수 있다. **계산 메서드의 조건 로직의 검사 조건을 타입 코드**라고 생각하면 된다.  
+4. Strategy의 계산 메소드에 [Replace Conditional with Polymorphism](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-conditional-with-polymorphism)을 적용한다. 이 때 [Replace Type Code with Subclasses](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-type-code-with-subclasses)를 사용할 것인지, 아니면  [Replace Type Code with State/strategy](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#replace-type-code-with-statestrategy)를 사용할 것이지 결정해야 한다. 어지간해선 **전자**를 선택하는 것이 좋다. 타입 코드가 명확하게 존재하지 않더라도 전자를 적용할 수 있다. **계산 메서드의 조건 로직의 검사 조건을 타입 코드**라고 생각하면 된다.  
 
 한번에 하나의 서브클래스를 만드는 데 집중해야 한다. 이 과정을 마치고 나면 계산 메서드에 있던 조건 로직이 훨씬 간단해지거나, 심지어 없어질 수도 있다. 그 뒤엔 각 알고리즘에 해당하는 Strategy를 여러 개 얻게 된다. 가능하면 이들의 수퍼클래스를 `abstract`하게 만들면 좋다.  
 

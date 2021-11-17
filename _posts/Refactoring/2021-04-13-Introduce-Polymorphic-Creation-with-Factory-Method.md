@@ -100,14 +100,14 @@ class Test {
 
 #### 동기
 
-[Replace Constructors with Creation Methods](https://jo631.github.io/refactoring/2021/04/13/Replace-Constructors-With-Creation-Methods/) 리팩터링을 구현하려면 원하는 객체를 생성해서 리턴하는 메소드를 클래스에 추가하기만 하면 된다.  그 메소드는 `static`메법일 수도 있고 아닐수도 있다. 다만 [Factory Method](https://jo631.github.io/designpattern/2021/04/14/Factory/#%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%8C%A8%ED%84%B4) 패턴의 경우 다음과 같은 필수 요소가 필요하다.  
+[Replace Constructors with Creation Methods](https://ukcastle.github.io/refactoring/2021/04/13/Replace-Constructors-With-Creation-Methods/) 리팩터링을 구현하려면 원하는 객체를 생성해서 리턴하는 메소드를 클래스에 추가하기만 하면 된다.  그 메소드는 `static`메법일 수도 있고 아닐수도 있다. 다만 [Factory Method](https://ukcastle.github.io/designpattern/2021/04/14/Factory/#%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%8C%A8%ED%84%B4) 패턴의 경우 다음과 같은 필수 요소가 필요하다.  
 >1. 팩토리 메서드가 생성해 리턴하는 객체의 집합을 대표하는 하나의 타입(Interface, Abstract Class, Class)
 >2. 위 타입을 구현하는 클래스들
 >3. 팩토리 메소드를 구현하는 여러개의 클래스
 
 팩토리 메소드는 단순히 공통 인터페이스를 가지는 클래스들을 통해 구현되기도 하지만, 실제로 어떤 상속 구조 내에서 구현되는 것이 보통이다.(사실 예시는 전자이다.)  
 
-팩토리 메소드 패턴은 [Template Method](https://jo631.github.io/designpattern/2021/04/14/TemplateMethod/) 패턴과 함께 사용되는 경우가 많다.  즉 템플릿 메소드에서 팩토리 메소드를 호출하는 것이다.  
+팩토리 메소드 패턴은 [Template Method](https://ukcastle.github.io/designpattern/2021/04/14/TemplateMethod/) 패턴과 함께 사용되는 경우가 많다.  즉 템플릿 메소드에서 팩토리 메소드를 호출하는 것이다.  
 
 상속 구조 내의 중복 코드를 제거하는 리팩터링을 수행하다 보면 자연스럽게 이 두 패턴을 함께 사용하게 된다. 예를들어 어떤 메소드가 수퍼 클래스에도 있고 여러 서브클래스에서도 오버라이드 되어있는데, 그 구현은 객체 생성 단계를 제외하곤 거의 동일하다면? 이 상황에서는 그 메서드를 수퍼 클래스로 옮겨 일종의 템플릿 메서드를 만들면 중복 코드를 제거할 수 있다.  
 그러나 수퍼 클래스에서 어떤 경우에 어느 객체를 생성해야 할지 알 수 없으므로 그 작업은 서브 클래스에 맡겨야 한다. 그리고 이런 상황에서는 Factory Method보다 적절한 패턴이 없다.  
@@ -132,14 +132,14 @@ Factory Method를 사용하는 것이 new 연산자나, 생성자를 사용하�
 
 둘 중 위의 상황에 대해 다루겠다. 하지만 방법은 거의 비슷하다.  
 
-1. 유사 메소드 중 하나를 선택해 객체 생성 단계가 별도의 객체 생성 메소드에서 수행되도록 수정한다(생성자를 포장해 함수로 만든다). 객체를 생성하는 코드에 [Extrac Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-method)를 적용해도 되고, 이미 객체 생성 메소드가 있으면 그 것을 사용해도 된다.  
+1. 유사 메소드 중 하나를 선택해 객체 생성 단계가 별도의 객체 생성 메소드에서 수행되도록 수정한다(생성자를 포장해 함수로 만든다). 객체를 생성하는 코드에 [Extrac Method](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-method)를 적용해도 되고, 이미 객체 생성 메소드가 있으면 그 것을 사용해도 된다.  
 객체 생성에서는 일반화된 이름을 붙여야 한다. 모든 형제 클래스에도 같은 이름의 메소드가 필요하기 때문이다. 또한 리턴 타입도 유사 메소드들이 모두 포괄할 수 있는 타입이여야 한다.  
 
 2. 나머지 유사 메소드에 대해서도 단계 1을 반복한다. 관련된 모든 형제 클래스에 객체 생성 메소드가 하나씩 생길텐데 각 메소드의 시그니처는 모두 동일해야한다.  
 
-3. 다음은 수퍼클래스를 수정해야 한다. 만약 직접 수정할 수 없는 상황이거나, 수정하지 않는것이 더 좋다고 판단될 경우는 [Extract Superclass](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-superclass)를 사용하고, 원래의 수퍼클래스를 상속하는 서브클래스들은 새로 만들어진 수퍼클래스를 상속하게 바꾼다.  
+3. 다음은 수퍼클래스를 수정해야 한다. 만약 직접 수정할 수 없는 상황이거나, 수정하지 않는것이 더 좋다고 판단될 경우는 [Extract Superclass](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#extract-superclass)를 사용하고, 원래의 수퍼클래스를 상속하는 서브클래스들은 새로 만들어진 수퍼클래스를 상속하게 바꾼다.  
 
-4. 유사 메소드에 대해 From Template Method 를 적용한다. 이 과정에서는 [Pull Up Method](https://jo631.github.io/refactoring/2021/04/09/RefactoringToPattern/#pull-up-method)가 포함되는데, 이 때는 꼭 절차에 나온 조언을 따르는 것을 추천한다.
+4. 유사 메소드에 대해 From Template Method 를 적용한다. 이 과정에서는 [Pull Up Method](https://ukcastle.github.io/refactoring/2021/04/09/RefactoringToPattern/#pull-up-method)가 포함되는데, 이 때는 꼭 절차에 나온 조언을 따르는 것을 추천한다.
     > 타입 검사를 엄격하게 하는 프로그래밍 언어를 사용하고, 옮기려는 메소드에서 두 서브클래스에는 있지만 수퍼클래스에는 없는 메소드를 호출한다면, 해당 메소드를 수퍼클래스에 추상 메소드로 선언하라.
 
     이렇게 하면, 팩토리 메소드를 구현하게 된 것이다. 이제 형제클래스들은 각각 FactoryMethod:ConcreteCreator가 되었다.  

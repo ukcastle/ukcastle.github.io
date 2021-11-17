@@ -25,7 +25,7 @@ mkdir thermal | cd thermal
 
 #### OpenCV 설치
 
-다른 버전을 설치해도 되고.. [여기](https://jo631.github.io/jetson/2021/05/23/opencv-in-jetson/)를 찾아봐도 된다.  
+다른 버전을 설치해도 되고.. [여기](https://ukcastle.github.io/jetson/2021/05/23/opencv-in-jetson/)를 찾아봐도 된다.  
 
 
 #### 의존성 설치

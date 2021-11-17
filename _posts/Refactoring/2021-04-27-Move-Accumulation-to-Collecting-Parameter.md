@@ -14,7 +14,7 @@ tag: [DesignPattern, Refactoring]
 
 #### 동기
 
-수집 파라미터(Collecting Parameter)란 **주어진 메서드로부터 정보를 수집하기 위해** 그 메서드에 **파라미터로 넘겨지는 개체**이다. 이 패턴은 [Composed Method](https://jo631.github.io/refactoring/2021/04/14/Compose-Method/)와 함께 사용되는 경우가 많다.  
+수집 파라미터(Collecting Parameter)란 **주어진 메서드로부터 정보를 수집하기 위해** 그 메서드에 **파라미터로 넘겨지는 개체**이다. 이 패턴은 [Composed Method](https://ukcastle.github.io/refactoring/2021/04/14/Compose-Method/)와 함께 사용되는 경우가 많다.  
 
 다루기 어려울 정도로 비대한 메서드를 분해하여 Composed Method로 만드려면 Composed Method에 의해 호출되는 각 메서드로부터 정보를 얻어 **어떻게 축적할것인가** 결정해야 한다.  
 각 메서드가 각각의 정보를 축적해두었다가 나중에 최종 형태로 합칠수도 있지만, 각 메서드에 **수집 파라미터**를 넘겨 점진적으로 축적할 수도 있다. 각 메서드는 자신의 정보를 수집 파라미터에 쓰고 그 결과로 정보가 축적된다.  
@@ -24,7 +24,7 @@ tag: [DesignPattern, Refactoring]
 
 수집 파라미터는 특정 클래스의 특정 인터페이스를 통해 정보를 얻고 축적하도록 구현된다. 따라서 많은 대상으로부터, 그리고 다양한 인터페이스를 통해 정보를 수집하려는 경우 별로 적합하지 않다. 그럴 땐 Visitor 패턴을 사용하자.  
 
-이 패턴은 [Composite](https://jo631.github.io/designpattern/2021/04/19/Composite/) 패턴과 궁합이 잘 맞는다. 수집 파라미터가 컴포짓 구조로부터 재귀적으로 정보를 축적할 수 있기 때문이다. 좋은 예시로 JUnit 프레임워크가 있다.  
+이 패턴은 [Composite](https://ukcastle.github.io/designpattern/2021/04/19/Composite/) 패턴과 궁합이 잘 맞는다. 수집 파라미터가 컴포짓 구조로부터 재귀적으로 정보를 축적할 수 있기 때문이다. 좋은 예시로 JUnit 프레임워크가 있다.  
 
 <br>
 
@@ -38,7 +38,7 @@ tag: [DesignPattern, Refactoring]
 
 1. 정보를축적하여 하나의 결과로 만드는 **축적 메서드를 찾는다.** 그 결과를 담는 지역 변수를 수집 파라미터로 만들 것이다. 결과 변수의 타입이 여러 메서드를 통해 반복적으로 정보를 모으는 데 적합하지 않다면, 타입을 바꾼다. 예를 들어 Java의 String은 정보를 축적하기 부적절하므로 StringBuffer 클래스로 바꾼다.  
 
-2. 축적 메서드의 내부에서 정보 축적의 한 과정을 골라 [Extract Method](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method) 리팩터링을 적용해 별도의 메서드로 뽑아낸다. 접근 지정자는 `private`로, 리턴 타입은 `void`로 하고 **결과 변수를 파라미터**로 받도록 한다. 뽑아낸 메서드에서는 **결과 변수에 정보를 기록**하도록 만든다.
+2. 축적 메서드의 내부에서 정보 축적의 한 과정을 골라 [Extract Method](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method) 리팩터링을 적용해 별도의 메서드로 뽑아낸다. 접근 지정자는 `private`로, 리턴 타입은 `void`로 하고 **결과 변수를 파라미터**로 받도록 한다. 뽑아낸 메서드에서는 **결과 변수에 정보를 기록**하도록 만든다.
 
 3. 정보 축적의 나머지 과정에 대해서도 단계 2를 반복하여 원래 코드가 결과 변수를 파라미터로 받아 거기에 정보를 기록하는 메서드로 바꾸도록 한다.
 결과적으로 축적 메서드는 다음 세 단계로 이루어진다.  
@@ -52,7 +52,7 @@ tag: [DesignPattern, Refactoring]
 
 #### 구현
 
-[저번에 쓴 코드](https://jo631.github.io/refactoring/2021/04/19/Replace-Implicit-Tree-with-Composite/#%EC%A0%88%EC%B0%A8-4)에서 가져오겠다.
+[저번에 쓴 코드](https://ukcastle.github.io/refactoring/2021/04/19/Replace-Implicit-Tree-with-Composite/#%EC%A0%88%EC%B0%A8-4)에서 가져오겠다.
 
 ```java
 

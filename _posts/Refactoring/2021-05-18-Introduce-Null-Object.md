@@ -51,7 +51,7 @@ Null 객체를 도입한다고 해서 검사 로직이 자동으로 사라지지
 
 여기서 제시할 절차는 어떤 필드나 변수 값이 Null일때 이를 참조하는 것을 막기 위해 코드 여기저기에 Null 검사 로직이 존재하는 상황을 가정한다. 그리고 이후 사용하는 **'원천 클래스'** 라는 용어는 해당 타입의 필드나 변수를 Null 값으로부터 보호해야 할 클래스를 자칭한다.  
 
-1. 원천 클래스에 [Extract Subclass](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-subclass)를 적용하거나 그 클래스가 구현하고 있는 인터페이스를 구현하여 Null 객체 클래스를 만든다, 인터페이스를 이용하고 싶은데 원천 클래스가 구현하는 인터페이스가 없다면 [Extract Interface](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-interface)를 적용하여 인터페이스를 직접 만들어도 좋다.
+1. 원천 클래스에 [Extract Subclass](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-subclass)를 적용하거나 그 클래스가 구현하고 있는 인터페이스를 구현하여 Null 객체 클래스를 만든다, 인터페이스를 이용하고 싶은데 원천 클래스가 구현하는 인터페이스가 없다면 [Extract Interface](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-interface)를 적용하여 인터페이스를 직접 만들어도 좋다.
 
 2. 원천 클래스를 사용하는 클라이언트 코드에서 Null 검사 로직을 찾는다. 그리고 그때 호출되는 메서드는 Null 객체 클래스가 오버라이드하게 만들고, 값이 Null일 경우 동작을 수행하도록 구현한다.  
 

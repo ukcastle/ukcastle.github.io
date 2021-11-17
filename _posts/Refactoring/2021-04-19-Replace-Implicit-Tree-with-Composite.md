@@ -8,7 +8,7 @@ tag: [DesignPattern, Refactoring]
 #### 개요
 
 >실질적으로 트리 구조인 데이터를 String과 같은 기본 타입으로 표현하고 있다면,
-그 기본 타입의 표현을 [Composite](https://jo631.github.io/designpattern/2021/04/19/Composite/) 구조로 바꾼다.
+그 기본 타입의 표현을 [Composite](https://ukcastle.github.io/designpattern/2021/04/19/Composite/) 구조로 바꾼다.
 
 #### 동기
 
@@ -113,7 +113,7 @@ class ProductFinder{
 
 #### 절차
 
-이 리팩터링을 적용하는 경로는 두가지이다. 하나는 표준 방법대로 묵시적 트리를 조금씩 리팩터링해 Composite으로 바꾸는 것이고, 다른 하나는 여기에 테스트 주도 개발(TDD)를 포함시키는 것이다. 묵시적 트리에 [Extract Class](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-class)같은 리팩터링을 적용하는 것이 여의치 않을 때 TDD를 사용한다.  
+이 리팩터링을 적용하는 경로는 두가지이다. 하나는 표준 방법대로 묵시적 트리를 조금씩 리팩터링해 Composite으로 바꾸는 것이고, 다른 하나는 여기에 테스트 주도 개발(TDD)를 포함시키는 것이다. 묵시적 트리에 [Extract Class](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-class)같은 리팩터링을 적용하는 것이 여의치 않을 때 TDD를 사용한다.  
 
 1. 묵시적 트리 중 새로운 클래스로 모델화할 수 있는 부분인 **묵시적 종단(Leaf)**를 찾는다. 이 때 새로운 클래스는 종단 노드를 나타내는 것으로, **Composite:Leaf**에 해당한다. 종단 노드 클래스에 Extract Class 또는 TDD를 통해 생성한다.  
 묵시적 종단에 속성이 있다면, **각 속성에 해당하는 변수**를 종단 노드 클래스에 만들어 결과적으로 새로 만든 종단 노드 클래스가 묵시적인 종단과 동일한 정보를 나타내게 해야 한다.  
@@ -372,6 +372,6 @@ String result = ordersTag.toString();
 위의 리팩토링은, `TagNode` 단 한개의 클래스로 모든 행동이 가능하여 인터페이스를 추가하지 않았다. 만약 TagNode만으로 해결이 안 될 코드면, 인터페이스를 만들고 `toString()` 메서드를 구현해야 할 것이다.  
 
 반복되는 코드들에 대해 리팩토링을 추가로 진행할 수도 있을 것이다.  
-[Encapsulate Composite with Builder](https://jo631.github.io/refactoring/2021/04/20/Encapsulate-Composite-with-Builder/)를 통해 알아보자.  
+[Encapsulate Composite with Builder](https://ukcastle.github.io/refactoring/2021/04/20/Encapsulate-Composite-with-Builder/)를 통해 알아보자.  
 
 

@@ -8,14 +8,14 @@ tag: [DesignPattern, Refactoring]
 #### 개요
 
 >어떤 객체의 상태 전이를 제어하는 조건 로직이 **복잡**하다면,
-각 상태에 해당하는 [State](https://jo631.github.io/designpattern/2021/05/13/State/) 클래스를 하나씩 만들고 그들이 스스로 다른 상태로 전이하는 것을 책임지도록 하여 복잡한 조건 로직을 제거한다.  
+각 상태에 해당하는 [State](https://ukcastle.github.io/designpattern/2021/05/13/State/) 클래스를 하나씩 만들고 그들이 스스로 다른 상태로 전이하는 것을 책임지도록 하여 복잡한 조건 로직을 제거한다.  
 
 <br>
 
 #### 동기
 
 State 패턴으로 리팩터링하는 주된 목적은 **상태 전이를 위한 조건 로직이 지나치게 복잡한 경우** 이를 해소하는 것이다. 상태 전이 로직이란 객체의 상태와 이들 간의 전이 방법을 제어하는 것으로, 클래스 내부 여기저기에 흩어져 존재하는 경향이 있다. State 패턴을 구현한다는 것은 각 상태에 대응하는 별도의 클래스를 만들고 상태 전이 로직을 그 클래스들로 옮기는 작업을 뜻한다. 이 때 원래의 호스트인 `Context` 객체는 상태와 관련된 기능을 State 객체에 위임한다. 그리고 **상태 전이**는 Context 객체의 대리 객체를 한 State 객체에서 **다른 State 객체로 바꾸는 일**이 된다.  
-이 리팩터링을 시작하기 전에, [Extract Method](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method)와 같은 단순한 리팩터링으로도 충분한지 보는것이 좋다. 이는 복잡한 코드에 적합한 리팩터링이기 때문이다.  
+이 리팩터링을 시작하기 전에, [Extract Method](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method)와 같은 단순한 리팩터링으로도 충분한지 보는것이 좋다. 이는 복잡한 코드에 적합한 리팩터링이기 때문이다.  
 
 만약 State 객체에 필드가 없다면, Context 객체가 State 객체를 공유하게 만들어서 메모리를 절약할 수 있다. 공유를 위해 자주 사용되는 패턴에는 Flyweight와 Singleton이 있다. 그러나 너무 앞서 State 객체의 공유를 구현하기 보단, 추후 State의 생성 코드가 주요 병목지점임을 확인한 후 적용해도 늦지 않는다.  
 
@@ -33,9 +33,9 @@ State 패턴으로 리팩터링하는 주된 목적은 **상태 전이를 위한
 
 #### 절차
 
-1. 컨텍스트 클래스는 원래의 상태 필드를 갖고 있는 클래스다. 상태 필드에는 상태 전이가 일어나는 동안에 상태를 나타내는 상수 가운데 하나가 대입되고, 그 값이 비교되기도 한다. [Replace Type Code with Class](https://jo631.github.io/refactoring/2021/05/12/Replace-Type-Code-with-Class/)를 적용해준다.  
+1. 컨텍스트 클래스는 원래의 상태 필드를 갖고 있는 클래스다. 상태 필드에는 상태 전이가 일어나는 동안에 상태를 나타내는 상수 가운데 하나가 대입되고, 그 값이 비교되기도 한다. [Replace Type Code with Class](https://ukcastle.github.io/refactoring/2021/05/12/Replace-Type-Code-with-Class/)를 적용해준다.  
 
-2. 이제 State 수퍼 클래스에서 정의된 각 상수는 State 인스턴스를 하나씩 참조하고 있다. [Extract Subclass](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-subclass)를 통해 **각 상수에 대한 서브클래스를 하나씩 만든 후, 수퍼 클래스에서는 그에 대한 서브 클래스 인스턴스들을 참조**하도록 수정한다. 그리고 마무리 작업으로 **수퍼 클래스를 추상화**시킨다.  
+2. 이제 State 수퍼 클래스에서 정의된 각 상수는 State 인스턴스를 하나씩 참조하고 있다. [Extract Subclass](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-subclass)를 통해 **각 상수에 대한 서브클래스를 하나씩 만든 후, 수퍼 클래스에서는 그에 대한 서브 클래스 인스턴스들을 참조**하도록 수정한다. 그리고 마무리 작업으로 **수퍼 클래스를 추상화**시킨다.  
 
 3. 컨텍스트 클래스에서 **상태 전이 로직에 따라 원래의 상태 필드의 값을 변경하는 작업을 수행하는 메서드**를 찾는다. 그리고 이 메서드를 State 수퍼 클래스로 복사하는데, 단순히 복사만 해서는 코드가 동작하지 않을 수 있다. **가장 간단한 해결법은 Context 객체를 새 메서드에 파라미터로 넘겨** 해결한다. 마지막으로, 컨텍스트 클래스의 원본 메서드는 작업을 새로 만든 메서드에게 위임하도록 수정한다.  
 
@@ -147,7 +147,7 @@ if(!state.equals(DB_REQUESTED){
 
 ##### 절차 1
 
-첫번째로 [Replace Type Code with Class](https://jo631.github.io/refactoring/2021/05/12/Replace-Type-Code-with-Class/)를 적용시킨다. 결과적으로 다음과 같은 클래스가 생긴다.  
+첫번째로 [Replace Type Code with Class](https://ukcastle.github.io/refactoring/2021/05/12/Replace-Type-Code-with-Class/)를 적용시킨다. 결과적으로 다음과 같은 클래스가 생긴다.  
 
 ```java
 public class PermissionState{

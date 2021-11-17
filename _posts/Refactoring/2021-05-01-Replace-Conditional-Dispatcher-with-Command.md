@@ -15,7 +15,7 @@ tag: [DesignPattern, Refactoring]
 #### 동기
 
 많은 코드에서, 어떠한 상황에 따라 여러가지 로직으로 분류되는 (switch와 같은)조건문을 보았을것이다. 이를 **조건적 디스패처**라고 한다.  
-처리해야 할 요청의 종류가 적고 이를 처리하는 로직도 얼마 되지 않는다면 기존의 형태대로 구현해도 무방하지만, 조건 로직 부분이 모니터 한 화면에서 보지 못 할 정도로 방대하다면 기존의 조건적 디스패처를 [Command](https://jo631.github.io/designpattern/2021/05/01/Command/) 패턴 으로 바꾸는 리팩토링이 권장된다.  
+처리해야 할 요청의 종류가 적고 이를 처리하는 로직도 얼마 되지 않는다면 기존의 형태대로 구현해도 무방하지만, 조건 로직 부분이 모니터 한 화면에서 보지 못 할 정도로 방대하다면 기존의 조건적 디스패처를 [Command](https://ukcastle.github.io/designpattern/2021/05/01/Command/) 패턴 으로 바꾸는 리팩토링이 권장된다.  
 하지만 이는 해당 리팩토링을 하는 대표적인 이유는 아닌데, 대표적인 이유 두가지는 다음과 같다.  
 1. 런타임에 충분히 유동적이지 못하다.  
     >요청이나 처리 로직이 동적으로 구성될 필요가 있는 경우, 조건적 디스패처는 적절하지 않다. 이는 처리 로직이 하드 코딩되기 때문에 로직의 동적 구성을 지원할 수 없다.  
@@ -41,11 +41,11 @@ Command 패턴은 각 요청을 처리하는 로직을 `execute()` 또는 `run()
 
 #### 절차
 
-1. 조건적 디스패처를 포함한 클래스에서 **요청을 실행하는 코드를 찾고**, [Extract Method](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method)를 적용해 별도의 실행 메서드로 뽑아낸다.  
+1. 조건적 디스패처를 포함한 클래스에서 **요청을 실행하는 코드를 찾고**, [Extract Method](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-method)를 적용해 별도의 실행 메서드로 뽑아낸다.  
 
 2. 요청을 실행하는 나머지 다른 코드에 대해서도 단계 1을 반복해 모두 별도의 실행 메서드로 바꾼다.  
 
-3. 각각의 실행 메서드에 [Extract Class](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-class) 를 적용해 요청을 처리하는 구체 커맨드 클래스로 만든다. 이 과정에서 구체 커맨드 클래스로 옮긴 실행 메서드들은 보통 `public` 메서드가 될 것이다. 만약 옮긴 실행 메서드가 너무 크거나 쉽게 이해할 수 없다면 [Compose Method](https://jo631.github.io/refactoring/2021/04/14/Compose-Method/)를 적용하라. 구체 클래스를 모두 만들고 난 후 중복된 코드가 없는지 확인해보고, 만약 있다면 [Form Template Method](https://jo631.github.io/refactoring/2021/04/16/Form-Template-Method/)를 적용하라.   
+3. 각각의 실행 메서드에 [Extract Class](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-class) 를 적용해 요청을 처리하는 구체 커맨드 클래스로 만든다. 이 과정에서 구체 커맨드 클래스로 옮긴 실행 메서드들은 보통 `public` 메서드가 될 것이다. 만약 옮긴 실행 메서드가 너무 크거나 쉽게 이해할 수 없다면 [Compose Method](https://ukcastle.github.io/refactoring/2021/04/14/Compose-Method/)를 적용하라. 구체 클래스를 모두 만들고 난 후 중복된 코드가 없는지 확인해보고, 만약 있다면 [Form Template Method](https://ukcastle.github.io/refactoring/2021/04/16/Form-Template-Method/)를 적용하라.   
 
 4. 앞서 만든 모든 구체 커맨드 클래스에 공통으로 적용될 수 있는 메서드를 선언하는 **인터페이스**를 정의한다. 이 과정에서 커맨드 클래스들의 공통점과 차이점을 찾아야 한다. 다음 질문에 대해 답을 찾아보자.  
 
@@ -58,7 +58,7 @@ Command 패턴은 각 요청을 처리하는 로직을 `execute()` 또는 `run()
 - 모든 구체 커맨드 클래스에 동일하게 적용할 수 있는 실행 메서드의 가장 간단한 시그니처는 무엇인가?
     > execute() or run()
 
-구체 커맨드 클래스에 대해 [Extract Superclass](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-superclass) 또는 [Extract Interface](https://jo631.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-interface)를 적용해 초기 버전의 커맨드를 만드는 것을 고려한다.  
+구체 커맨드 클래스에 대해 [Extract Superclass](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-superclass) 또는 [Extract Interface](https://ukcastle.github.io/refactoring/2021/04/07/RefactoringToPattern/#extract-interface)를 적용해 초기 버전의 커맨드를 만드는 것을 고려한다.  
 
 5. 모든 구체 커맨드 클래스가 단계 4에서 만든 커맨드 타입을 **구현하거나 상속**하도록 수정한다.  
 
