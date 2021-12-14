@@ -1,13 +1,14 @@
 ---
 layout: post
-title: Object Detection 회고
+title: 재활용 쓰레기 Object Detection 회고
 category: [AI, BC]
-tag: [Object Detection, Pytorch, Detectron] 
+tag: [Object Detection, Pytorch, Detectron2] 
 ---
 
 ## 개요
 
 - Naver BoostCamp AI Tech 2nd. 교육 중 진행한 프로젝트  
+- 21.09.30~21.10.16
 - 거리 위 쓰레기 사진를 Object Detection 하여 쓰레기의 분리수거 유무를 AI가 판단하여 사회적 환경 부담 문제를 줄일 수 있는 방법 연구, 개발  
 - Metric : mAP50
 - **(개인)** Detectron2, Yolo v5 프레임워크를 이용한 연구 파이프라인 생성, 모델 성능 향상을 위한 가설 및 검증
