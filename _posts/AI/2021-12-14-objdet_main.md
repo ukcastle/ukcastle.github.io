@@ -19,6 +19,15 @@ tag: [Object Detection, Pytorch, Detectron]
 
 ## 문제 정의, 해결
 
+- **Detectron2 사용법을 알아보기**  
+  기본 예제를 보면서 사용법을 [여기](https://ukcastle.github.io/bc/2021/09/28/w9d2/)와 [저기](https://ukcastle.github.io/bc/2021/09/29/w9d3/)에 정리했다.  
+	다만 후술할 내용이지만 입력받는 변수를 확정지어버리면 위험하다.  
+
+- **Detectron2 Repeated Sampler 사용하기**  
+  torch의 weighted sampler와 같은 개념인것같다.  
+	기본적으로 제공하고 있지만 사용법이 별로 없어 처음 사용할 때 난항을 겪었다. 이를 [여기](https://ukcastle.github.io/bc/2021/09/30/w9d4/)에 정리하였다.  
+	
+
 - **Detectron2 관점에서 MM-Detection을 같이 사용하며 연구할 때 WandB 연동하기**  
 	Detectron2는 21.10. 기준 WandB를 제공해주지 않는다. 하지만 연구의 효율을 높이기 위하여 직접 연동하여 [여기](https://ukcastle.github.io/bc/2021/10/05/w10d1/)에 정리해놨다.  
 	
@@ -31,7 +40,7 @@ tag: [Object Detection, Pytorch, Detectron]
 
 - **Detectron2를 추상화할때 주의할 점**
   프레임워크의 전체적인 구조는 각 모델 별 yaml 파일이 있고 이를 불러와서 사용하는 흔한 개념이다.  
-	그래서 좀 더 사용하기 편하게 커스텀하는 과정에서 하나의 yaml 파일을 잡고 구조를 확정지어버렸는데, 다른 모델을 돌릴 때 엄청난 에러가 쏟아졌다. 하나하나 디버깅해가며 찾아 본 결과 yaml파일마다 저장된 key 값이 달랐다.  
+	그래서 좀 더 사용하기 편하게 커스텀하는 과정에서 하나의 yaml 파일을 잡고 [이렇게](https://ukcastle.github.io/bc/2021/09/27/w9d1/)구조를 확정지어버렸는데, 다른 모델을 돌릴 때 엄청난 에러가 쏟아졌다. 하나하나 디버깅해가며 찾아 본 결과 yaml파일마다 저장된 key 값이 달랐다.  
 	그래서.. 이를 **하나의 yaml 파일로 매개변수를 고정해버리면 대참사**가 일어난다.  
 
 - **1 Stage 와 2 Stage의 Ensemble**  
