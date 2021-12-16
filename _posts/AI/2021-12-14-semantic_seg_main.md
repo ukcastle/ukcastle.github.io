@@ -20,8 +20,19 @@ tag: [Semantic Segmentation, Pytorch]
 - 검증 사진은 공개 불가능
 
 ## 문제 정의, 해결
+링크추가예정  
+- 투박한 연구 프로세스는 그만...
+  - Pytorch 훈련 베이스라인 생성(멘토님이 참신하다고 해주심)  
 
-- 추가 예정   
+- WandB 차트와 mIoU 계산식을 보고 난 뒤의 고민사항  
+  - 정확도를 높이는 방향으로 가자  
+
+- Obj Det때부터 느낀점은 우리의 데이터셋에 Swin Transformer가 잘 맞는다. 하지만 smp에는 swinT를 지원해주지 않는다.  
+  - smp에서 swin Transformer를 이식해보자  
+  
+- 앙상블이 정답인가?  
+  - Obj Det때의 mIoU와 차이점, 결과  
+
 
 ## 회고
 
