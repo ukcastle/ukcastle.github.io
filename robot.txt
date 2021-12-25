@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://ukcastle.github.io/sitemap.xml
+Sitemap: https://ukcastle.github.io/sitemap.xml
