@@ -39,6 +39,7 @@ nav:
   Categories:           
     - '/blog/categories/'
     - { AI : '/blog/categories/#ai' }
+    - { AWS : '/blog/categories/#aws' }
     - { Boostcamp : '/blog/categories/#bc' }
     - { DesignPattern : '/blog/categories/#designpattern'}
     - { Go: '/blog/categories/#go'}
