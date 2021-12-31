@@ -1,4 +1,5 @@
 User-agent: *
-Allow: /
 
-Sitemap: {{ '/sitemap.xml' | relative_url | prepend: site.url }}
+Disallow: /norobots/
+
+Sitemap: {{ site.url | append: site.baseurl }}/sitemap.xml
