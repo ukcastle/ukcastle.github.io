@@ -2,4 +2,4 @@ User-agent: *
 
 Disallow: /norobots/
 
-Sitemap: {{ site.baseurl }}/sitemap.xml
+Sitemap: https://ukcastle.github.io/sitemap.xml
