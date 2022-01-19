@@ -197,6 +197,7 @@ argparse로 `RECIPE` 부분의 인자를 받아야하지만, 혼자 연구하는
 
 ## Recipe 구현
 
-
+이제 동적인 코드들의 전부인 Recipe을 구현합니다.  
+Recipe은 바로 위 `AbstractRecipe`를 상속하여 만들어집니다.
 
 ## etc..
