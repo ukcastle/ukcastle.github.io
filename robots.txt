@@ -1,5 +1,3 @@
 User-agent: *
 
-Disallow: /norobots/
-
-Sitemap: https://ukcastle.github.io/sitemap.xml
+Sitemap: http://ukcastle.github.io/sitemap.xml
