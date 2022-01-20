@@ -198,6 +198,7 @@ argparse로 `RECIPE` 부분의 인자를 받아야하지만, 혼자 연구하는
 ## Recipe 구현
 
 이제 동적인 코드들의 전부인 Recipe을 구현합니다.  
-Recipe은 바로 위 `AbstractRecipe`를 상속하여 만들어집니다.
+Recipe은 바로 위 `AbstractRecipe`를 상속하여 만들어집니다.  
+기존 클래스의 형태에 맞춰 구현을 하면 됩니다.  
 
-## etc..
+너무 예제가 방대하여 기존 코드의 [링크](https://github.com/boostcampaitech2/final-project-level3-cv-04/blob/main/model_lab/frame_classification/custom/full/recipe.py)를 걸어두겠습니다.  
