@@ -20,7 +20,6 @@ tag: [Semantic Segmentation, Pytorch]
 - 검증 사진은 공개 불가능
 
 ## 문제 정의, 해결
-링크추가예정  
 - 투박한 연구 프로세스는 그만...
   - [Pytorch 훈련 베이스라인 생성](https://ukcastle.github.io/ai/2022/01/03/pytorch_baseline/)  
 
