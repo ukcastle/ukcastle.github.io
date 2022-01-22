@@ -22,16 +22,20 @@ tag: [Semantic Segmentation, Pytorch]
 ## 문제 정의, 해결
 링크추가예정  
 - 투박한 연구 프로세스는 그만...
-  - Pytorch 훈련 베이스라인 생성(멘토님이 참신하다고 해주심)  
+  - [Pytorch 훈련 베이스라인 생성](https://ukcastle.github.io/ai/2022/01/03/pytorch_baseline/)  
 
 - WandB 차트와 mIoU 계산식을 보고 난 뒤의 고민사항  
-  - 정확도를 높이는 방향으로 가자  
+  - 어떤 부분때문에 정확도가 낮은지 찾아봤다.  
+  - 위치 자체를 잘 못잡기보다는, 종이와 종이팩과 같은 비슷한 클래스들에서 아예 잘못 예측하여 정확도가 많이 떨어졌다.  
+  - 따라서 성능이 좋은 백본을 사용해보자 라고 생각했다.    
 
 - Obj Det때부터 느낀점은 우리의 데이터셋에 Swin Transformer가 잘 맞는다. 하지만 smp에는 swinT를 지원해주지 않는다.  
-  - smp에서 swin Transformer를 이식해보자  
+  - [smp에서 swin Transformer를 이식해보자](https://ukcastle.github.io/ai/2022/01/22/smp-swin/)  
   
 - 앙상블이 정답인가?  
-  - Obj Det때의 mIoU와 차이점, 결과  
+  - objdet에서의 mAP는 낮은 정확도의 박스들은 엄청나게 큰 영향을 주지 않는다. 하지만 SMP에서 mIoU는 이미지를 2차원적으로 보며 점수를 매기기때문에, 결국 많은 박스들이 Hard-voting 된 값이라고 생각하면 된다.  
+  따라서 hard-voting된 값들을 또 다시 앙상블한다면 이는 상당히 위험한 방법이다.  
+  앙상블은 하는게 좋지만, 되도록 soft-voting 방식을 이용하는게 좋다.  
 
 
 ## 회고
