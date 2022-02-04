@@ -27,8 +27,11 @@ tag: [Pytorch]
 
 !! 추가중 !!
 
-- 영상에서 이미지를 추출한 뒤 Train, Valid를 나누자.  
+- 영상에서 이미지를 추출한 뒤 Train, Valid를 나누자. 용량이 너무 커서 오래걸린다. 
+  - [멀티프로세싱을 이용한 데이터셋 제작](https://ukcastle.github.io/python/2022/01/22/video_2_image/)
 
-
+- 훈련 파이프라인 구축
+  - [깔쌈하고 아름다운 Pytorch 훈련 파이프라인](https://ukcastle.github.io/ai/2022/01/03/pytorch_baseline/)
+  - 파이썬 데코레이터를 이용한 WandB 연결하기 
 
 ## 회고
