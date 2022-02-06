@@ -17,7 +17,7 @@ tag: [Pytorch]
 
 - [Github repo](https://github.com/boostcampaitech2/final-project-level3-cv-04)  
 - Demo  
-  ![image](https://github.com/boostcampaitech2/final-project-level3-cv-04/raw/main/src/demo_2x.gif)
+  ![image](/postimg/ai/손씻기.gif)
 - Overall Architecture  
   ![image](https://github.com/boostcampaitech2/final-project-level3-cv-04/raw/main/src/service_architecture.png)  
 - [발표 자료](https://github.com/boostcampaitech2/final-project-level3-cv-04/blob/main/docs/Networking%20Day%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C%20%EC%B5%9C%EC%A2%85%EB%B3%B8.pdf)
@@ -32,6 +32,6 @@ tag: [Pytorch]
 
 - 훈련 파이프라인 구축
   - [깔쌈하고 아름다운 Pytorch 훈련 파이프라인](https://ukcastle.github.io/ai/2022/01/03/pytorch_baseline/)
-  - 파이썬 데코레이터를 이용한 WandB 연결하기 
+  - [파이썬 데코레이터를 이용한 WandB 연결하기](https://ukcastle.github.io/ai/2022/01/24/wandb-used_deco/) 
 
 ## 회고
